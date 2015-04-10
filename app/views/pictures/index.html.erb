@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<% @pictures.each do |picture| %>
+ <div class="img-wrapper" id="iw2">
+    <div class="imgbox" id="2">
+        <img src="<%= picture.url%>">
+          <span class="caption fade-caption">
+          <h3><%= picture.name%></h3>
+          <p>Text den du möchtest</p>
+          </span>
+    </div>
+  </div>
+<% end %>
+
+

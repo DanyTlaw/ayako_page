@@ -1,0 +1,416 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ @import "bootstrap";
+
+header{
+    width: 100%;
+    height: 100px;
+    font-family: bookman;
+}
+
+body{
+    background: white;
+    font-family: bookman;
+    height: 100%;
+}
+#content{
+    padding:10px;
+    padding-bottom:80px;
+}
+
+#main-wrapper{
+  min-height: 100%;
+  position:relative;
+
+}
+
+a
+{
+    color: black;
+    text-decoration: none;
+}
+
+p{
+   font-family: bookman;
+}
+
+.nav-wrapper{
+    float:right;
+
+}
+
+.logo{
+    width: auto;
+    height: 60px;
+    float:left;
+    font-size: 60px;
+    padding-left: 20px;
+    font-family: bookman;
+}
+
+.languages{
+    height: 60px;
+    width: 150px;
+    float: right;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+
+
+nav{
+
+    width: auto;
+    clear:right;
+    padding-right:20px;
+}
+
+nav ul{
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav li
+{
+    display: block;
+    float: left;
+    text-align: center;
+    line-height: 40px;
+}
+
+nav li a, nav li span
+{
+    display: inline-block;
+    margin-left: 1px;
+    padding: 0em 1.5em;
+    letter-spacing: 0.10em;
+    text-decoration: none;
+    font-size: 1em;
+    text-transform: uppercase;
+    outline: 0;
+
+    background: #ECECEC;
+}
+
+
+nav li:hover a, nav li.active a, nav li.active span
+{
+    background: #2F4F4F;
+    color: #FFF;
+}
+
+nav .current_page_item a
+{
+    background: #2F4F4F;
+    color: #FFF;
+}
+
+section{
+    width: 1000px;
+    height: auto; /*Muss abgeändert auf auto werden*/
+    float:right;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+section h1{
+    font-size: 20px;
+    letter-spacing: 0.10em;
+    border-style: solid;
+    border-width: 1px;
+    border-bottom-color: black;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+    margin: 0px 0px 0px 0px;
+    font-family: bookman;
+
+}
+
+.gallery{
+    width:auto;
+    height:auto;
+}
+
+
+
+.info{
+
+    float: left;
+    width: 200px;
+    height: 300px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding-left: 20px;
+
+}
+
+
+
+.news{
+    clear: left;
+    width: 200px;
+    height: 300px;
+    padding-left: 20px;
+}
+.info h1{
+    font-size: 20px;
+    letter-spacing: 0.10em;
+    border-style: solid;
+    border-width: 1px;
+    border-bottom-color: black;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+    margin: 0px 0px 0px 0px;
+    font-family: bookman;
+}
+.news h1{
+    font-size: 20px;
+    letter-spacing: 0.10em;
+    border-style: solid;
+    border-bottom-color: black;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+    border-width: 1px;
+    margin: 0px 0px 0px 0px;
+    font-family: bookman;
+}
+
+.footer{
+    width: 100%;
+    height: 80px;
+    margin-top: 80px;
+    border-top-style: solid;
+    border-width: 1px;
+    position:relative;
+    bottom:0;
+    left:0;
+    clear: both;
+}
+.socialmedia-wrapper{
+    float:right;
+    padding-right: 20px;
+}
+.socialmedia-wrapper img{
+    margin-top: 20px;
+
+}
+article{
+
+}
+/***********************************************************************************************************************
+GALLERY EFFEKTE
+***********************************************************************************************************************/
+.img-wrapper{
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin: 10px 10px 0px 10px;
+
+}
+
+.imgbox{
+    width:200px;
+    height:200px;
+
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    -moz-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
+    overflow: hidden;
+    position: relative;
+}
+
+.imgbox img{
+    width:200px;
+    height:200px;
+    left: 0;
+    position: absolute;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+}
+
+.imgbox .caption{
+    background-color: rgba(0,0,0,0.8);
+    position: absolute;
+    color: #fff;
+    z-index: 100;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    left: 0;
+}
+
+/*Fade Caption*/
+.imgbox .fade-caption, .imgbox .scale-caption {
+    opacity: 0;
+    width: 200px;
+    height: 200px;
+    text-align: left;
+    padding: 15px;
+}
+
+.imgbox:hover .fade-caption {
+    opacity: 1;
+}
+
+.share-wrapper{
+    width: 230px;
+    height: 50px;
+
+
+}
+
+.link-buttons{
+    width: 230;
+    height: 30px;
+    margin-bottom: 10px;
+}
+.link-buttons img{
+    width:24px;
+    height: 24px;
+    margin: 5px 5px 5px 0px;
+}
+
+/***********************************************************************************************************************
+Icon EFFEKTE
+***********************************************************************************************************************/
+
+.fbsocial-roll {
+    background-image: image-url('48x48-Circle-52-FB.png');
+    height: 48px;
+    width: 48px;
+    margin: 10px;
+    float: left;
+    border-radius: 50%;
+    -webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+}
+
+.fbsocial-roll:hover {
+    background-image: image-url('48x48-Circle-57-FB.png');
+    box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.8);
+    -webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+    -ms-transform:rotate(360deg);
+    transform:rotate(360deg);
+}
+
+.twsocial-roll {
+    background-image: image-url('48x48-Circle-52-TW.png');
+    height: 48px;
+    width: 48px;
+    margin: 10px;
+    float: left;
+    border-radius: 50%;
+    -webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+}
+.twsocial-roll:hover {
+    background-image: image-url('48x48-Circle-64-TW.png');
+    box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.8);
+    -webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+    -ms-transform:rotate(360deg);
+    transform:rotate(360deg);
+}
+
+.pinsocial-roll {
+    background-image: image-url('48x48-Circle-52-P.png');
+    height: 48px;
+    width: 48px;
+    margin: 10px;
+    float: left;
+    border-radius: 50%;
+    -webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+}
+.pinsocial-roll:hover {
+    background-image: image-url('48x48-Circle-82-P.png');
+    box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.8);
+    -webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+    -ms-transform:rotate(360deg);
+    transform:rotate(360deg);
+}
+
+.lisocial-roll {
+    background-image: image-url('48x48-Circle-52-LI.png');
+    height: 48px;
+    width: 48px;
+    margin: 10px;
+    float: left;
+    border-radius: 50%;
+    -webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+}
+.lisocial-roll:hover {
+    background-image: image-url('48x48-Circle-58-LI.png');
+    box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.8);
+    -webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+    -ms-transform:rotate(360deg);
+    transform:rotate(360deg);
+}
+
+.gsocial-roll {
+    background-image: image-url('48x48-Circle-52-GP.png');
+    height: 48px;
+    width: 48px;
+    margin: 10px;
+    float: left;
+    border-radius: 50%;
+    -webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+}
+.gsocial-roll:hover {
+    background-image: image-url('48x48-Circle-81-GP.png');
+    box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.8);
+    -webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+    -ms-transform:rotate(360deg);
+    transform:rotate(360deg);
+}
+

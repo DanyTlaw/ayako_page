@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @picture.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @picture.price %>
+</p>
+
+<p>
+  <strong>Count:</strong>
+  <%= @picture.count %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= image_tag @picture.url %>
+</p>
+
+<p>
+  <strong>Theme:</strong>
+  <%= @picture.theme_id %>
+</p>
+
+<%= link_to 'Back', theme_pictures_path %>
