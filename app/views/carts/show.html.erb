@@ -1,0 +1,39 @@
+<% if notice %>
+	<p id="notice"><%= notice %></p>
+<% end %>
+<div class="col-md-12">
+	<h2>Your Cart </h2><%= button_to 'Empty Cart', @cart, method: :delete, data:{ confirm: 'Are you sure'}%>
+		<% @cart.line_items.each do |item| %>
+		<div class="col-md-3" style="clear: both;">
+			<div class="img-wrapper-thumb">
+				<div class="imgbox">
+					<%= image_tag item.picture.url_url(:thumb) %>
+					<span class="caption fade-caption">
+						<h3><%= item.picture.name%></h3>
+						<p>Text den du möchtest</p>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<table class="cart">
+				<tr>
+					<td><%= item.quantity %> &times; <%= item.picture.name %></td>
+					<td class="price"><%= number_to_currency(item.total_price)%></td>
+				</tr>
+			</table>
+		</div>
+		<% end %>
+		<div class="col-md-12">
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-9">
+				<table class="cart">
+					<tr>
+						<td>Total:</td>
+						<td class="price"><%= number_to_currency(@cart.total_price)%></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+</div>
