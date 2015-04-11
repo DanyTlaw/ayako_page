@@ -21009,3 +21009,1949 @@ Processing by CartsController#show as HTML
   Rendered layouts/_navigation.html.erb (0.1ms)
   Rendered layouts/_footer.html.erb (0.0ms)
 Completed 200 OK in 111ms (Views: 108.5ms | ActiveRecord: 1.1ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateOrders (20150411010802)
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (151.7ms)[0m  [1mCREATE TABLE "orders" ("id" serial primary key, "name" character varying, "adress" text, "email" character varying, "pay_type" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150411010802"]]
+  [1m[36m (38.8ms)[0m  [1mCOMMIT[0m
+Migrating to AddOrderToLineItem (20150411010819)
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (2.3ms)[0m  [1mALTER TABLE "line_items" ADD "order_id" integer[0m
+  [1m[35m (70.5ms)[0m  CREATE  INDEX  "index_line_items_on_order_id" ON "line_items"  ("order_id")
+  [1m[36m (3.9ms)[0m  [1mALTER TABLE "line_items" ADD CONSTRAINT "fk_rails_5b24f55d03"
+FOREIGN KEY ("order_id")
+  REFERENCES "orders" ("id")
+[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150411010819"]]
+  [1m[36m (41.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.7ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (5.4ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'carts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.6ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'line_items'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (4.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'orders'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'pictures'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (4.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'themes'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+
+
+Started GET "/carts/8" for 127.0.0.1 at 2015-04-11 03:35:58 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[35mCart Load (0.9ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Load (1.1ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 8]]
+  [1m[35mPicture Load (1.1ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPicture Load (0.8ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (86.6ms)
+  Rendered layouts/_navigation.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 2120ms (Views: 2067.1ms | ActiveRecord: 19.8ms)
+
+
+Started GET "/assets/orders-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-04-11 03:36:00 +0200
+
+
+Started GET "/assets/orders-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-04-11 03:36:00 +0200
+
+
+Started GET "/assets/application-2c4d11d08ec8be0a627980275d1802d5.js?body=1" for 127.0.0.1 at 2015-04-11 03:36:00 +0200
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:36:03 +0200
+
+SyntaxError (/home/dany/Worksapce/ayako_page/app/controllers/orders_controller.rb:3: syntax error, unexpected [, expecting keyword_do or '{' or '('
+  before_action :set_cart, only [:new, :create]
+                                 ^):
+  app/controllers/orders_controller.rb:3: syntax error, unexpected [, expecting keyword_do or '{' or '('
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (21.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (15.9ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (30.1ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:36:32 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.5ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (47.7ms)
+  Rendered orders/new.html.erb within layouts/application (49.8ms)
+Completed 500 Internal Server Error in 138ms
+
+ActionView::Template::Error (uninitialized constant Order::PAYMENT_TYPES):
+    25:   </div>
+    26:   <div class="form-group">
+    27:     <%= f.label :pay_type %><br>
+    28:     <%= f.select :pay_type, Order::PAYMENT_TYPES, prompt: "Select a payment method",class: "form-control" %>
+    29:   </div>
+    30:   <div class="actions">
+    31:     <%= f.submit "Place Order", class: "btn btn-default"%>
+  app/views/orders/_form.html.erb:28:in `block in _app_views_orders__form_html_erb__268119424630692837_70141505952380'
+  app/views/orders/_form.html.erb:1:in `_app_views_orders__form_html_erb__268119424630692837_70141505952380'
+  app/views/orders/new.html.erb:4:in `_app_views_orders_new_html_erb__2090139740275488940_70141505941800'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (25.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (15.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (29.7ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:39:25 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.6ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (5.5ms)
+  Rendered orders/new.html.erb within layouts/application (6.6ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 135ms (Views: 96.2ms | ActiveRecord: 12.3ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:40:14 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (6.4ms)
+  Rendered orders/new.html.erb within layouts/application (7.3ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 113ms (Views: 108.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:40:51 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (1.8ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (5.0ms)
+  Rendered orders/new.html.erb within layouts/application (9.8ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 126ms (Views: 121.1ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:42:00 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (5.6ms)
+  Rendered orders/new.html.erb within layouts/application (6.5ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 119ms (Views: 115.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:42:55 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (5.4ms)
+  Rendered orders/new.html.erb within layouts/application (6.3ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 116ms (Views: 112.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:42:58 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (4.0ms)
+  Rendered orders/new.html.erb within layouts/application (4.8ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 120ms (Views: 116.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:43:00 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (5.2ms)
+  Rendered orders/new.html.erb within layouts/application (6.1ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 124ms (Views: 119.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:44:00 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (2.9ms)
+  Rendered orders/new.html.erb within layouts/application (3.6ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 100ms (Views: 95.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:45:14 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (4.8ms)
+  Rendered orders/new.html.erb within layouts/application (5.6ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 106ms (Views: 102.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:45:16 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (4.9ms)
+  Rendered orders/new.html.erb within layouts/application (5.9ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 113ms (Views: 108.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:48:52 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.7ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (14.9ms)
+  Rendered orders/new.html.erb within layouts/application (18.8ms)
+Completed 500 Internal Server Error in 152ms
+
+ActionView::Template::Error (couldn't find file 'bootstrap/alert'
+  (in /home/dany/Worksapce/ayako_page/app/assets/stylesheets/application.css.scss:15)):
+    2: <html>
+    3: <head>
+    4:   <title>AyakoArt</title>
+    5:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    6:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__430094211268860656_38976740'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (27.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (20.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.9ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (36.8ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:49:14 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (5.9ms)
+  Rendered orders/new.html.erb within layouts/application (7.3ms)
+  Rendered layouts/_navigation.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 1855ms (Views: 1849.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/bootstrap-select-c086090b278799118cfb42683075e592.css?body=1" for 127.0.0.1 at 2015-04-11 03:49:16 +0200
+
+
+Started GET "/assets/application-fe8d51bbc49ee69e65bdeaf10f483a64.css?body=1" for 127.0.0.1 at 2015-04-11 03:49:16 +0200
+
+
+Started GET "/assets/application-22c0cc4e167ec66f347b4c7b419a1135.js?body=1" for 127.0.0.1 at 2015-04-11 03:49:16 +0200
+
+
+Started GET "/assets/bootstrap-select-c19c264fb635c3326bd7cd084287732b.js?body=1" for 127.0.0.1 at 2015-04-11 03:49:16 +0200
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:49:34 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (2.5ms)
+  Rendered orders/new.html.erb within layouts/application (3.1ms)
+Completed 500 Internal Server Error in 30ms
+
+ActionView::Template::Error (couldn't find file 'bootstrap/alert'
+  (in /home/dany/Worksapce/ayako_page/app/assets/stylesheets/application.css.scss:15)):
+    2: <html>
+    3: <head>
+    4:   <title>AyakoArt</title>
+    5:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    6:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__430094211268860656_38976740'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (25.9ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (16.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (30.1ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:50:01 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (2.1ms)
+  Rendered orders/new.html.erb within layouts/application (2.7ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 131ms (Views: 126.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:51:11 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (2.7ms)
+  Rendered orders/new.html.erb within layouts/application (3.5ms)
+Completed 500 Internal Server Error in 9ms
+
+SyntaxError (/home/dany/Worksapce/ayako_page/app/views/orders/_form.html.erb:28: syntax error, unexpected ',', expecting =>
+...tpicker", Order::PAYMENT_TYPES, prompt: "Select a payment me...
+...                               ^):
+  app/views/orders/_form.html.erb:28: syntax error, unexpected ',', expecting =>
+  app/views/orders/new.html.erb:5:in `_app_views_orders_new_html_erb___4518822570767784182_38991700'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (28.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (17.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (32.0ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:51:58 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (1.5ms)
+  Rendered orders/new.html.erb within layouts/application (2.1ms)
+Completed 500 Internal Server Error in 6ms
+
+SyntaxError (/home/dany/Worksapce/ayako_page/app/views/orders/_form.html.erb:28: syntax error, unexpected tCONSTANT, expecting ')'
+...pe, class: "selectpicker" Order::PAYMENT_TYPES, prompt: "Sel...
+...                               ^
+/home/dany/Worksapce/ayako_page/app/views/orders/_form.html.erb:28: dynamic constant assignment
+...ctpicker" Order::PAYMENT_TYPES, prompt: "Select a payment me...
+...                               ^
+/home/dany/Worksapce/ayako_page/app/views/orders/_form.html.erb:28: syntax error, unexpected tLABEL, expecting '='
+..." Order::PAYMENT_TYPES, prompt: "Select a payment method" );...
+...                               ^):
+  app/views/orders/_form.html.erb:28: syntax error, unexpected tCONSTANT, expecting ')'
+  app/views/orders/_form.html.erb:28: dynamic constant assignment
+  app/views/orders/_form.html.erb:28: syntax error, unexpected tLABEL, expecting '='
+  app/views/orders/new.html.erb:5:in `_app_views_orders_new_html_erb___4518822570767784182_38991700'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.9ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (26.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (16.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (30.6ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:52:21 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (2.2ms)
+  Rendered orders/new.html.erb within layouts/application (2.9ms)
+Completed 500 Internal Server Error in 8ms
+
+SyntaxError (/home/dany/Worksapce/ayako_page/app/views/orders/_form.html.erb:28: syntax error, unexpected ',', expecting =>
+...tpicker", Order::PAYMENT_TYPES, prompt: "Select a payment me...
+...                               ^):
+  app/views/orders/_form.html.erb:28: syntax error, unexpected ',', expecting =>
+  app/views/orders/new.html.erb:5:in `_app_views_orders_new_html_erb___4518822570767784182_38991700'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (27.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (17.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (32.0ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:53:02 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.2ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (3.7ms)
+  Rendered orders/new.html.erb within layouts/application (4.3ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 128ms (Views: 125.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:54:33 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (2.3ms)
+  Rendered orders/new.html.erb within layouts/application (3.1ms)
+Completed 500 Internal Server Error in 8ms
+
+SyntaxError (/home/dany/Worksapce/ayako_page/app/views/orders/_form.html.erb:28: syntax error, unexpected ',', expecting =>
+...tpicker", Order::PAYMENT_TYPES, prompt: "Select a payment me...
+...                               ^):
+  app/views/orders/_form.html.erb:28: syntax error, unexpected ',', expecting =>
+  app/views/orders/new.html.erb:5:in `_app_views_orders_new_html_erb___4518822570767784182_38991700'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (26.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (16.9ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (31.5ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:54:46 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (1.6ms)
+  Rendered orders/new.html.erb within layouts/application (2.2ms)
+Completed 500 Internal Server Error in 7ms
+
+SyntaxError (/home/dany/Worksapce/ayako_page/app/views/orders/_form.html.erb:28: syntax error, unexpected ':', expecting ')'
+...r.append=( f.select :pay_type :class => "selectpicker", Orde...
+...                               ^
+/home/dany/Worksapce/ayako_page/app/views/orders/_form.html.erb:28: syntax error, unexpected ',', expecting ')'
+..._type :class => "selectpicker", Order::PAYMENT_TYPES, prompt...
+...                               ^
+/home/dany/Worksapce/ayako_page/app/views/orders/_form.html.erb:28: dynamic constant assignment
+...tpicker", Order::PAYMENT_TYPES, prompt: "Select a payment me...
+...                               ^
+/home/dany/Worksapce/ayako_page/app/views/orders/_form.html.erb:28: syntax error, unexpected tLABEL, expecting '='
+..., Order::PAYMENT_TYPES, prompt: "Select a payment method" );...
+...                               ^):
+  app/views/orders/_form.html.erb:28: syntax error, unexpected ':', expecting ')'
+  app/views/orders/_form.html.erb:28: syntax error, unexpected ',', expecting ')'
+  app/views/orders/_form.html.erb:28: dynamic constant assignment
+  app/views/orders/_form.html.erb:28: syntax error, unexpected tLABEL, expecting '='
+  app/views/orders/new.html.erb:5:in `_app_views_orders_new_html_erb___4518822570767784182_38991700'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (28.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (16.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (31.8ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:57:12 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (6.8ms)
+  Rendered orders/new.html.erb within layouts/application (7.8ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 139ms (Views: 136.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:57:46 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (3.5ms)
+  Rendered orders/new.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 140ms (Views: 137.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:58:44 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (3.3ms)
+  Rendered orders/new.html.erb within layouts/application (3.9ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 148ms (Views: 145.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:59:26 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (5.3ms)
+  Rendered orders/new.html.erb within layouts/application (6.0ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 1776ms (Views: 1773.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 03:59:40 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (2.8ms)
+  Rendered orders/new.html.erb within layouts/application (3.5ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 130ms (Views: 126.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 04:01:12 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (4.3ms)
+  Rendered orders/new.html.erb within layouts/application (5.2ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 1699ms (Views: 1695.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/orders-5b390a533bb604ee449348bfefebf92c.css?body=1" for 127.0.0.1 at 2015-04-11 04:01:14 +0200
+
+
+Started GET "/assets/application-9b53778c379ad8118823297d35a38df3.css?body=1" for 127.0.0.1 at 2015-04-11 04:01:14 +0200
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 04:01:39 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (5.5ms)
+  Rendered orders/new.html.erb within layouts/application (6.3ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 176ms (Views: 170.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 04:11:50 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.7ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 8]]
+  Rendered orders/_form.html.erb (6.1ms)
+  Rendered orders/new.html.erb within layouts/application (7.2ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 255ms (Views: 210.3ms | ActiveRecord: 12.1ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2015-04-11 04:11:54 +0200
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"38wG0eX9hynSGIum/UhwRIO20DUaJ9TCpCI2ejjZxPCCYWzUhdwaePxLIdZ+rX+PtGqftzqdvCnKGxATAXulNA==", "order"=>{"name"=>"", "adress"=>"", "email"=>"", "pay_type"=>""}, "commit"=>"Place Order"}
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Load (0.5ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 8]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+Completed 500 Internal Server Error in 32ms
+
+NoMethodError (undefined method `address' for #<Order:0x007fb5daa65df0>):
+  app/controllers/orders_controller.rb:36:in `block in create'
+  app/controllers/orders_controller.rb:35:in `create'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (35.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (21.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (44.2ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2015-04-11 04:12:58 +0200
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"38wG0eX9hynSGIum/UhwRIO20DUaJ9TCpCI2ejjZxPCCYWzUhdwaePxLIdZ+rX+PtGqftzqdvCnKGxATAXulNA==", "order"=>{"name"=>"", "adress"=>"", "email"=>"", "pay_type"=>""}, "commit"=>"Place Order"}
+  [1m[35mCart Load (0.6ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Load (0.7ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 8]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  Rendered orders/_form.html.erb (9.1ms)
+  Rendered orders/new.html.erb within layouts/application (10.0ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 233ms (Views: 168.6ms | ActiveRecord: 11.3ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2015-04-11 04:13:36 +0200
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"38wG0eX9hynSGIum/UhwRIO20DUaJ9TCpCI2ejjZxPCCYWzUhdwaePxLIdZ+rX+PtGqftzqdvCnKGxATAXulNA==", "order"=>{"name"=>"dani", "adress"=>"diese", "email"=>"dada@google.com", "pay_type"=>"Rechnung"}, "commit"=>"Place Order"}
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mLineItem Load (0.5ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 8]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "orders" ("name", "adress", "email", "pay_type", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "dani"], ["adress", "diese"], ["email", "dada@google.com"], ["pay_type", "Rechnung"], ["created_at", "2015-04-11 02:13:36.343169"], ["updated_at", "2015-04-11 02:13:36.343169"]]
+  [1m[35mSQL (0.8ms)[0m  UPDATE "line_items" SET "cart_id" = $1, "order_id" = $2, "updated_at" = $3 WHERE "line_items"."id" = $4  [["cart_id", nil], ["order_id", 1], ["updated_at", "2015-04-11 02:13:36.348265"], ["id", 16]]
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "line_items" SET "cart_id" = $1, "order_id" = $2, "updated_at" = $3 WHERE "line_items"."id" = $4[0m  [["cart_id", nil], ["order_id", 1], ["updated_at", "2015-04-11 02:13:36.353309"], ["id", 17]]
+  [1m[35m (113.2ms)[0m  COMMIT
+  [1m[36mCart Load (0.7ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 8]]
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mLineItem Load (0.6ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 8]]
+  [1m[35mSQL (0.9ms)[0m  DELETE FROM "carts" WHERE "carts"."id" = $1  [["id", 8]]
+  [1m[36m (46.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/shop
+Completed 302 Found in 192ms (ActiveRecord: 165.6ms)
+
+
+Started GET "/shop" for 127.0.0.1 at 2015-04-11 04:13:36 +0200
+Processing by PicturesController#shop as HTML
+  [1m[35mPicture Load (1.0ms)[0m  SELECT "pictures".* FROM "pictures" WHERE "pictures"."for_sale" = 't'
+  Rendered pictures/shop.html.erb within layouts/application (22.9ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 176ms (Views: 163.6ms | ActiveRecord: 4.4ms)
+
+
+Started POST "/line_items?picture_id=4" for 127.0.0.1 at 2015-04-11 04:13:41 +0200
+Processing by LineItemsController#create as HTML
+  Parameters: {"authenticity_token"=>"XZS3lrJBhcFXuDXXKbhDHI7Nlo1YutZScSBGtibMjr4AOd2T0mAYkHnrn6eqXUzXuRHZD3gAvrkfGWDfH27veg==", "picture_id"=>"4"}
+  [1m[36mCart Load (0.3ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", nil]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "carts" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", "2015-04-11 02:13:41.141627"], ["updated_at", "2015-04-11 02:13:41.141627"]]
+  [1m[35m (58.8ms)[0m  COMMIT
+  [1m[36mPicture Load (0.9ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mLineItem Load (0.8ms)[0m  SELECT  "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1 AND "line_items"."picture_id" = $2 LIMIT 1  [["cart_id", 9], ["picture_id", 4]]
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "line_items" ("picture_id", "cart_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["picture_id", 4], ["cart_id", 9], ["created_at", "2015-04-11 02:13:41.217334"], ["updated_at", "2015-04-11 02:13:41.217334"]]
+  [1m[36m (5.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/carts/9
+Completed 302 Found in 92ms (ActiveRecord: 69.4ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:13:41 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCart Load (0.6ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mLineItem Load (0.8ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 9]]
+  [1m[35mPicture Load (0.9ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (20.1ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 174ms (Views: 168.8ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:16:06 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.3ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.5ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.5ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (10.9ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 168ms (Views: 164.8ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:17:10 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mLineItem Load (0.4ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 9]]
+  [1m[35mPicture Load (0.6ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (10.5ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 150ms (Views: 146.7ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:17:31 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.4ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.4ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.5ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (11.0ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 185ms (Views: 182.3ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:19:44 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mLineItem Load (0.4ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 9]]
+  [1m[35mPicture Load (0.9ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (11.3ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 143ms (Views: 139.6ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:20:12 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.4ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.4ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (9.2ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 135ms (Views: 132.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:20:55 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mLineItem Load (0.4ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 9]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (8.8ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 175ms (Views: 171.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:21:29 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.4ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.4ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (12.1ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 166ms (Views: 163.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:21:38 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mLineItem Load (0.4ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 9]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (9.0ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 148ms (Views: 145.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:21:46 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.4ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.3ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (9.1ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 146ms (Views: 143.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:22:01 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCart Load (0.3ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mLineItem Load (0.3ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 9]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (7.5ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 134ms (Views: 131.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:22:10 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.4ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.4ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.7ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (12.0ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 188ms (Views: 185.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:23:58 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCart Load (0.5ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mLineItem Load (0.3ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 9]]
+  [1m[35mPicture Load (0.5ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (11.2ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 165ms (Views: 162.0ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:24:32 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.4ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.3ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.5ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (7.4ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 151ms (Views: 147.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:25:01 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCart Load (0.7ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mLineItem Load (0.4ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 9]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (9.0ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 165ms (Views: 161.3ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:25:50 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.9ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.4ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (11.4ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 147ms (Views: 143.4ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:26:21 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mLineItem Load (0.4ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 9]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (9.1ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 142ms (Views: 139.5ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:27:11 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.4ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.4ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (9.8ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 175ms (Views: 172.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:30:17 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCart Load (0.5ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mLineItem Load (0.4ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 9]]
+  [1m[35mPicture Load (0.5ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (10.4ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 2154ms (Views: 2151.5ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/assets/carts-32f5292b0de9fc3a4a633000ff7ab21b.css?body=1" for 127.0.0.1 at 2015-04-11 04:30:19 +0200
+
+
+Started GET "/assets/application-ac4e2ee6400412aa3e1370d230b90788.css?body=1" for 127.0.0.1 at 2015-04-11 04:30:19 +0200
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:31:06 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.4ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.4ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (10.3ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 182ms (Views: 178.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/shop" for 127.0.0.1 at 2015-04-11 04:31:15 +0200
+Processing by PicturesController#shop as HTML
+  [1m[35mPicture Load (1.3ms)[0m  SELECT "pictures".* FROM "pictures" WHERE "pictures"."for_sale" = 't'
+  Rendered pictures/shop.html.erb within layouts/application (6.7ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 179ms (Views: 176.5ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/line_items?picture_id=4" for 127.0.0.1 at 2015-04-11 04:31:17 +0200
+Processing by LineItemsController#create as HTML
+  Parameters: {"authenticity_token"=>"doURhWqhDgfajdjhbr5Az071U3UFEoaN64pAdQQGVaYrKHuACoCTVvTecpHtW08EeSkc9yWo7maFs2YcPaQ0Yg==", "picture_id"=>"4"}
+  [1m[36mCart Load (0.4ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mLineItem Load (0.5ms)[0m  [1mSELECT  "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1 AND "line_items"."picture_id" = $2 LIMIT 1[0m  [["cart_id", 9], ["picture_id", 4]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "line_items" SET "quantity" = $1, "updated_at" = $2 WHERE "line_items"."id" = $3[0m  [["quantity", 2], ["updated_at", "2015-04-11 02:31:17.509508"], ["id", 18]]
+  [1m[35m (56.6ms)[0m  COMMIT
+Redirected to http://localhost:3000/carts/9
+Completed 302 Found in 69ms (ActiveRecord: 58.5ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:31:17 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.6ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.5ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (6.9ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 164ms (Views: 159.4ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/shop" for 127.0.0.1 at 2015-04-11 04:31:19 +0200
+Processing by PicturesController#shop as HTML
+  [1m[35mPicture Load (0.8ms)[0m  SELECT "pictures".* FROM "pictures" WHERE "pictures"."for_sale" = 't'
+  Rendered pictures/shop.html.erb within layouts/application (5.5ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 150ms (Views: 148.8ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/line_items?picture_id=5" for 127.0.0.1 at 2015-04-11 04:31:20 +0200
+Processing by LineItemsController#create as HTML
+  Parameters: {"authenticity_token"=>"/I6dyNj6lg3Wup/tBCUw5e1SeVhf75c15VcPqtdBCyOhI/fNuNsLXPjpNZ2HwD8u2o422n9V/96LbinD7uNq5w==", "picture_id"=>"5"}
+  [1m[36mCart Load (0.4ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36mLineItem Load (0.9ms)[0m  [1mSELECT  "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1 AND "line_items"."picture_id" = $2 LIMIT 1[0m  [["cart_id", 9], ["picture_id", 5]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "line_items" ("picture_id", "cart_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["picture_id", 5], ["cart_id", 9], ["created_at", "2015-04-11 02:31:20.232908"], ["updated_at", "2015-04-11 02:31:20.232908"]]
+  [1m[35m (51.5ms)[0m  COMMIT
+Redirected to http://localhost:3000/carts/9
+Completed 302 Found in 64ms (ActiveRecord: 54.3ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:31:20 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.4ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.6ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.6ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mPicture Load (0.6ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 5]]
+  Rendered carts/show.html.erb within layouts/application (12.0ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 183ms (Views: 178.3ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:31:41 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.4ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.4ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.3ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 5]]
+  Rendered carts/show.html.erb within layouts/application (13.2ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 156ms (Views: 152.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:32:35 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.3ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.3ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.3ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mPicture Load (0.3ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 5]]
+  Rendered carts/show.html.erb within layouts/application (9.8ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 2148ms (Views: 2145.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/carts-de173410b0673d7253591777b5d5404e.css?body=1" for 127.0.0.1 at 2015-04-11 04:32:37 +0200
+
+
+Started GET "/assets/application-3944b2197e2054ce3c0c16f519ccdc54.css?body=1" for 127.0.0.1 at 2015-04-11 04:32:37 +0200
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:32:48 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.4ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.4ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 5]]
+  Rendered carts/show.html.erb within layouts/application (13.9ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 2204ms (Views: 2200.7ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/assets/carts-bc5988513c74eba35d9721b00bd4d6fb.css?body=1" for 127.0.0.1 at 2015-04-11 04:32:51 +0200
+
+
+Started GET "/assets/application-90dd91fdf36ce7ecd353e6a00c24bd45.css?body=1" for 127.0.0.1 at 2015-04-11 04:32:51 +0200
+
+
+Started GET "/shop" for 127.0.0.1 at 2015-04-11 04:32:55 +0200
+Processing by PicturesController#shop as HTML
+  [1m[36mPicture Load (1.1ms)[0m  [1mSELECT "pictures".* FROM "pictures" WHERE "pictures"."for_sale" = 't'[0m
+  Rendered pictures/shop.html.erb within layouts/application (7.5ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 142ms (Views: 139.6ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/line_items?picture_id=3" for 127.0.0.1 at 2015-04-11 04:32:57 +0200
+Processing by LineItemsController#create as HTML
+  Parameters: {"authenticity_token"=>"B2wX9Q6+lZAq/j++rDrHl3kz/Q6eFZ3/UZs7ueXNot1awX3wbp8IwQStlc4v38hcTu+yjL6v9RQ/oh3Q3G/DGQ==", "picture_id"=>"3"}
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mPicture Load (0.3ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mLineItem Load (0.4ms)[0m  SELECT  "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1 AND "line_items"."picture_id" = $2 LIMIT 1  [["cart_id", 9], ["picture_id", 3]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "line_items" ("picture_id", "cart_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["picture_id", 3], ["cart_id", 9], ["created_at", "2015-04-11 02:32:57.071214"], ["updated_at", "2015-04-11 02:32:57.071214"]]
+  [1m[36m (59.8ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/carts/9
+Completed 302 Found in 71ms (ActiveRecord: 61.9ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 04:32:57 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCart Load (0.6ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mLineItem Load (0.6ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 9]]
+  [1m[35mPicture Load (0.6ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mPicture Load (0.7ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 3]]
+  Rendered carts/show.html.erb within layouts/application (15.7ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 192ms (Views: 186.8ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 04:33:35 +0200
+Processing by OrdersController#new as HTML
+  [1m[36mCart Load (0.8ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Exists (0.4ms)[0m  SELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1  [["cart_id", 9]]
+  Rendered orders/_form.html.erb (3.0ms)
+  Rendered orders/new.html.erb within layouts/application (4.4ms)
+  Rendered layouts/_navigation.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 160ms (Views: 153.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/shop" for 127.0.0.1 at 2015-04-11 06:17:25 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PicturesController#shop as HTML
+  [1m[35mPicture Load (1.1ms)[0m  SELECT "pictures".* FROM "pictures" WHERE "pictures"."for_sale" = 't'
+  Rendered pictures/shop.html.erb within layouts/application (43.8ms)
+  Rendered layouts/_navigation.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 299ms (Views: 261.3ms | ActiveRecord: 8.2ms)
+
+
+Started POST "/line_items?picture_id=4" for 127.0.0.1 at 2015-04-11 06:17:27 +0200
+Processing by LineItemsController#create as HTML
+  Parameters: {"authenticity_token"=>"CLJE9DFxsXsDwJv84dnFUEQp7QgQfjRBr+/FGxazR/NVHy7xUVAsKi2TMYxiPMqbc/WiijDEXKrB1uNyLxEmNw==", "picture_id"=>"4"}
+  [1m[36mCart Load (1.0ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mLineItem Load (1.5ms)[0m  [1mSELECT  "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1 AND "line_items"."picture_id" = $2 LIMIT 1[0m  [["cart_id", 9], ["picture_id", 4]]
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "line_items" SET "quantity" = $1, "updated_at" = $2 WHERE "line_items"."id" = $3[0m  [["quantity", 3], ["updated_at", "2015-04-11 04:17:27.633048"], ["id", 18]]
+  [1m[35m (51.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/carts/9
+Completed 302 Found in 129ms (ActiveRecord: 64.5ms)
+
+
+Started GET "/carts/9" for 127.0.0.1 at 2015-04-11 06:17:27 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCart Load (0.8ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLineItem Load (0.6ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mPicture Load (0.8ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mPicture Load (1.0ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPicture Load (1.1ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (35.8ms)
+  Rendered layouts/_navigation.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 292ms (Views: 284.9ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 06:17:31 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.6ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mLineItem Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 9]]
+  Rendered orders/_form.html.erb (14.7ms)
+  Rendered orders/new.html.erb within layouts/application (16.0ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 191ms (Views: 164.5ms | ActiveRecord: 4.1ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2015-04-11 06:17:51 +0200
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EjG/rtOs3rJYwsq5IpJPJ7/jnO7xwP2wyQUFBf3eoKxPnNWrs41D43aRYMmhd0DsiD/TbNF6lVunPCNsxHzBaA==", "order"=>{"name"=>"dani", "adress"=>"dort", "email"=>"daniel.herzog.work@outlook.com", "pay_type"=>"Rechnung"}, "commit"=>"Place Order"}
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mLineItem Load (0.5ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 9]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "orders" ("name", "adress", "email", "pay_type", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "dani"], ["adress", "dort"], ["email", "daniel.herzog.work@outlook.com"], ["pay_type", "Rechnung"], ["created_at", "2015-04-11 04:17:51.235872"], ["updated_at", "2015-04-11 04:17:51.235872"]]
+  [1m[35mSQL (0.7ms)[0m  UPDATE "line_items" SET "cart_id" = $1, "order_id" = $2, "updated_at" = $3 WHERE "line_items"."id" = $4  [["cart_id", nil], ["order_id", 2], ["updated_at", "2015-04-11 04:17:51.239729"], ["id", 19]]
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "line_items" SET "cart_id" = $1, "order_id" = $2, "updated_at" = $3 WHERE "line_items"."id" = $4[0m  [["cart_id", nil], ["order_id", 2], ["updated_at", "2015-04-11 04:17:51.242885"], ["id", 20]]
+  [1m[35mSQL (0.8ms)[0m  UPDATE "line_items" SET "cart_id" = $1, "order_id" = $2, "updated_at" = $3 WHERE "line_items"."id" = $4  [["cart_id", nil], ["order_id", 2], ["updated_at", "2015-04-11 04:17:51.245784"], ["id", 18]]
+  [1m[36m (81.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mCart Load (0.6ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mLineItem Load (0.5ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 9]]
+  [1m[36mSQL (0.7ms)[0m  [1mDELETE FROM "carts" WHERE "carts"."id" = $1[0m  [["id", 9]]
+  [1m[35m (47.6ms)[0m  COMMIT
+DEPRECATION WARNING: `#deliver` is deprecated and will be removed in Rails 5. Use `#deliver_now` to deliver immediately or `#deliver_later` to deliver through Active Job. (called from block in create at /home/dany/Worksapce/ayako_page/app/controllers/orders_controller.rb:39)
+  Rendered order_notifier/received.html.erb within layouts/mailer (1.0ms)
+  [1m[36mPicture Load (0.8ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mPicture Load (0.5ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mPicture Load (0.2ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered line_items/_line_item.text.erb (8.1ms)
+  Rendered order_notifier/received.text.erb within layouts/mailer (11.4ms)
+
+OrderNotifier#received: processed outbound mail in 320.9ms
+
+Sent mail to daniel.herzog.work@outlook.com (1024.6ms)
+Date: Sat, 11 Apr 2015 06:17:51 +0200
+From: Ayako Kyodo <ayako.kyodo@example.com
+To: daniel.herzog.work@outlook.com
+Message-ID: <5528a06fb8267_50df213dd941149c@dany-530U4E-540U4E.mail>
+Subject: Ayako Kyodo Order Confirmation
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5528a06fb4ba3_50df213dd941138a";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5528a06fb4ba3_50df213dd941138a
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Dear dani
+
+Thank you for your recent order from my webpage.
+
+Im glad you found something you like.
+
+You ordered the following pictures:
+
+1 x intim 41 x intim 23 x intim 3
+
+
+----==_mimepart_5528a06fb4ba3_50df213dd941138a
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1>OrderNotifier#received</h1>
+
+<p>
+  , find me in app/views/order_notifier/received.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_5528a06fb4ba3_50df213dd941138a--
+
+Redirected to http://localhost:3000/shop
+Completed 302 Found in 1551ms (ActiveRecord: 136.9ms)
+
+
+Started GET "/shop" for 127.0.0.1 at 2015-04-11 06:17:52 +0200
+Processing by PicturesController#shop as HTML
+  [1m[35mPicture Load (0.8ms)[0m  SELECT "pictures".* FROM "pictures" WHERE "pictures"."for_sale" = 't'
+  Rendered pictures/shop.html.erb within layouts/application (5.4ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 128ms (Views: 125.8ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/line_items?picture_id=3" for 127.0.0.1 at 2015-04-11 06:23:23 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LineItemsController#create as HTML
+  Parameters: {"authenticity_token"=>"k8Z/ZOId9xYhW2KGPmed4/NmQO04HgcIcldwrezRYEPOaxVhgjxqRw8IyPa9gpIoxLoPbxikb+McblbE1XMBhw==", "picture_id"=>"3"}
+  [1m[35mCart Load (0.5ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", nil]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "carts" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2015-04-11 04:23:24.135399"], ["updated_at", "2015-04-11 04:23:24.135399"]]
+  [1m[36m (30.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mPicture Load (0.6ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mLineItem Load (0.8ms)[0m  [1mSELECT  "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1 AND "line_items"."picture_id" = $2 LIMIT 1[0m  [["cart_id", 10], ["picture_id", 3]]
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (1.2ms)[0m  [1mINSERT INTO "line_items" ("picture_id", "cart_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["picture_id", 3], ["cart_id", 10], ["created_at", "2015-04-11 04:23:24.250891"], ["updated_at", "2015-04-11 04:23:24.250891"]]
+  [1m[35m (29.9ms)[0m  COMMIT
+Redirected to http://localhost:3000/carts/10
+Completed 302 Found in 193ms (ActiveRecord: 72.9ms)
+
+
+Started GET "/carts/10" for 127.0.0.1 at 2015-04-11 06:23:24 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mCart Load (0.8ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mLineItem Load (0.5ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 10]]
+  [1m[36mPicture Load (0.8ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  Rendered carts/show.html.erb within layouts/application (31.0ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 283ms (Views: 278.9ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 06:23:26 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.8ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36mLineItem Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 10]]
+  Rendered orders/_form.html.erb (24.0ms)
+  Rendered orders/new.html.erb within layouts/application (26.3ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 249ms (Views: 220.4ms | ActiveRecord: 5.6ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2015-04-11 06:23:36 +0200
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"V2KaSKhsuP+IMdmgnNLyigoT/ukfB3t5Z/XTw8OMvFkKz/BNyE0lrqZic9AfN/1BPc+xaz+9E5IJzPWq+i7dnQ==", "order"=>{"name"=>"da", "adress"=>"hththt", "email"=>"daniel.herzog.work@outlook.com", "pay_type"=>"Rechnung"}, "commit"=>"Place Order"}
+  [1m[35mCart Load (0.5ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36mLineItem Load (0.5ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 10]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "orders" ("name", "adress", "email", "pay_type", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "da"], ["adress", "hththt"], ["email", "daniel.herzog.work@outlook.com"], ["pay_type", "Rechnung"], ["created_at", "2015-04-11 04:23:36.629414"], ["updated_at", "2015-04-11 04:23:36.629414"]]
+  [1m[35mSQL (1.0ms)[0m  UPDATE "line_items" SET "cart_id" = $1, "order_id" = $2, "updated_at" = $3 WHERE "line_items"."id" = $4  [["cart_id", nil], ["order_id", 3], ["updated_at", "2015-04-11 04:23:36.633428"], ["id", 21]]
+  [1m[36m (118.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mCart Load (0.7ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mLineItem Load (0.5ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 10]]
+  [1m[36mSQL (0.8ms)[0m  [1mDELETE FROM "carts" WHERE "carts"."id" = $1[0m  [["id", 10]]
+  [1m[35m (46.7ms)[0m  COMMIT
+DEPRECATION WARNING: `#deliver` is deprecated and will be removed in Rails 5. Use `#deliver_now` to deliver immediately or `#deliver_later` to deliver through Active Job. (called from block in create at /home/dany/Worksapce/ayako_page/app/controllers/orders_controller.rb:39)
+  Rendered order_notifier/received.html.erb within layouts/mailer (0.5ms)
+  [1m[36mPicture Load (0.5ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  Rendered line_items/_line_item.text.erb (2.7ms)
+  Rendered order_notifier/received.text.erb within layouts/mailer (5.3ms)
+
+OrderNotifier#received: processed outbound mail in 195.8ms
+
+Sent mail to daniel.herzog.work@outlook.com (1105.7ms)
+Date: Sat, 11 Apr 2015 06:23:37 +0200
+From: Ayako Kyodo <ayako.kyodo@example.com
+To: daniel.herzog.work@outlook.com
+Message-ID: <5528a1c9916e_51921d51c30458c9@dany-530U4E-540U4E.mail>
+Subject: Ayako Kyodo Order Confirmation
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5528a1c968d0_51921d51c30457e4";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5528a1c968d0_51921d51c30457e4
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Dear da
+
+Thank you for your recent order from my webpage.
+
+Im glad you found something you like.
+
+You ordered the following pictures:
+
+1 x intim 2
+
+
+----==_mimepart_5528a1c968d0_51921d51c30457e4
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1>OrderNotifier#received</h1>
+
+<p>
+  , find me in app/views/order_notifier/received.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_5528a1c968d0_51921d51c30457e4--
+
+Redirected to http://localhost:3000/shop
+Completed 302 Found in 1525ms (ActiveRecord: 170.4ms)
+
+
+Started GET "/shop" for 127.0.0.1 at 2015-04-11 06:23:38 +0200
+Processing by PicturesController#shop as HTML
+  [1m[35mPicture Load (0.9ms)[0m  SELECT "pictures".* FROM "pictures" WHERE "pictures"."for_sale" = 't'
+  Rendered pictures/shop.html.erb within layouts/application (5.0ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 135ms (Views: 132.1ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/line_items?picture_id=4" for 127.0.0.1 at 2015-04-11 06:27:34 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LineItemsController#create as HTML
+  Parameters: {"authenticity_token"=>"hrn8y4n1pQbzK0E8lSkLwxHLYtFJdQck/mLmYZyuA57bFJbO6dQ4V91460wWzAQIJhctU2nPb8+QW8AIpQxiWg==", "picture_id"=>"4"}
+  [1m[35mCart Load (0.6ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", nil]]
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "carts" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2015-04-11 04:27:34.548510"], ["updated_at", "2015-04-11 04:27:34.548510"]]
+  [1m[36m (51.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mPicture Load (1.1ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mLineItem Load (0.6ms)[0m  [1mSELECT  "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1 AND "line_items"."picture_id" = $2 LIMIT 1[0m  [["cart_id", 11], ["picture_id", 4]]
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (1.2ms)[0m  [1mINSERT INTO "line_items" ("picture_id", "cart_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["picture_id", 4], ["cart_id", 11], ["created_at", "2015-04-11 04:27:34.681384"], ["updated_at", "2015-04-11 04:27:34.681384"]]
+  [1m[35m (8.2ms)[0m  COMMIT
+Redirected to http://localhost:3000/carts/11
+Completed 302 Found in 199ms (ActiveRecord: 77.8ms)
+
+
+Started GET "/carts/11" for 127.0.0.1 at 2015-04-11 06:27:34 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mCart Load (0.6ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mLineItem Load (0.7ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 11]]
+  [1m[36mPicture Load (0.7ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered carts/show.html.erb within layouts/application (24.9ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 248ms (Views: 243.9ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 06:27:36 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.8ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mLineItem Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 11]]
+  Rendered orders/_form.html.erb (20.1ms)
+  Rendered orders/new.html.erb within layouts/application (22.7ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 263ms (Views: 232.7ms | ActiveRecord: 5.3ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2015-04-11 06:27:54 +0200
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MO3Nj6KhvoSTdLXQ2PnGc7oa/Nzt1f/9dW2cfGCmfENtQKeKwoAj1b0nH6BbHMm4jcazXs1vlxYbVLoVWQQdhw==", "order"=>{"name"=>"dani", "adress"=>"dasdas", "email"=>"daniel.herzogfhnw@gmail.com", "pay_type"=>"Rechnung"}, "commit"=>"Place Order"}
+  [1m[35mCart Load (0.5ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mLineItem Load (0.6ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 11]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "orders" ("name", "adress", "email", "pay_type", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "dani"], ["adress", "dasdas"], ["email", "daniel.herzogfhnw@gmail.com"], ["pay_type", "Rechnung"], ["created_at", "2015-04-11 04:27:54.062139"], ["updated_at", "2015-04-11 04:27:54.062139"]]
+  [1m[35mSQL (0.7ms)[0m  UPDATE "line_items" SET "cart_id" = $1, "order_id" = $2, "updated_at" = $3 WHERE "line_items"."id" = $4  [["cart_id", nil], ["order_id", 4], ["updated_at", "2015-04-11 04:27:54.065284"], ["id", 22]]
+  [1m[36m (118.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mLineItem Load (0.4ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 11]]
+  [1m[36mSQL (0.7ms)[0m  [1mDELETE FROM "carts" WHERE "carts"."id" = $1[0m  [["id", 11]]
+  [1m[35m (48.0ms)[0m  COMMIT
+DEPRECATION WARNING: `#deliver` is deprecated and will be removed in Rails 5. Use `#deliver_now` to deliver immediately or `#deliver_later` to deliver through Active Job. (called from block in create at /home/dany/Worksapce/ayako_page/app/controllers/orders_controller.rb:39)
+  Rendered order_notifier/received.html.erb within layouts/mailer (0.5ms)
+  [1m[36mPicture Load (0.6ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered line_items/_line_item.text.erb (2.6ms)
+  Rendered order_notifier/received.text.erb within layouts/mailer (4.7ms)
+
+OrderNotifier#received: processed outbound mail in 182.4ms
+
+Sent mail to daniel.herzogfhnw@gmail.com (1418.8ms)
+Date: Sat, 11 Apr 2015 06:27:54 +0200
+From: Ayako Kyodo <ayako.kyodo@example.com
+To: daniel.herzogfhnw@gmail.com
+Message-ID: <5528a2ca6efa2_51f623b01f853113@dany-530U4E-540U4E.mail>
+Subject: Ayako Kyodo Order Confirmation
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5528a2ca6cb10_51f623b01f853032";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5528a2ca6cb10_51f623b01f853032
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Dear dani
+
+Thank you for your recent order from my webpage.
+
+Im glad you found something you like.
+
+You ordered the following pictures:
+
+1 x intim 3
+
+
+----==_mimepart_5528a2ca6cb10_51f623b01f853032
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1>OrderNotifier#received</h1>
+
+<p>
+  , find me in app/views/order_notifier/received.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_5528a2ca6cb10_51f623b01f853032--
+
+Completed 500 Internal Server Error in 1822ms
+
+Net::SMTPAuthenticationError (535-5.7.8 Username and Password not accepted. Learn more at
+):
+  app/controllers/orders_controller.rb:39:in `block in create'
+  app/controllers/orders_controller.rb:35:in `create'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (32.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (21.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (44.0ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2015-04-11 06:28:32 +0200
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MO3Nj6KhvoSTdLXQ2PnGc7oa/Nzt1f/9dW2cfGCmfENtQKeKwoAj1b0nH6BbHMm4jcazXs1vlxYbVLoVWQQdhw==", "order"=>{"name"=>"dani", "adress"=>"dasdas", "email"=>"danysc2@gmail.com", "pay_type"=>"Rechnung"}, "commit"=>"Place Order"}
+  [1m[35mCart Load (0.4ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "carts" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2015-04-11 04:28:32.469214"], ["updated_at", "2015-04-11 04:28:32.469214"]]
+  [1m[36m (78.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mLineItem Load (0.6ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 12]]
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "orders" ("name", "adress", "email", "pay_type", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "dani"], ["adress", "dasdas"], ["email", "danysc2@gmail.com"], ["pay_type", "Rechnung"], ["created_at", "2015-04-11 04:28:32.559181"], ["updated_at", "2015-04-11 04:28:32.559181"]]
+  [1m[36m (45.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mCart Load (0.6ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 12]]
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mLineItem Load (0.6ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 12]]
+  [1m[36mSQL (0.9ms)[0m  [1mDELETE FROM "carts" WHERE "carts"."id" = $1[0m  [["id", 12]]
+  [1m[35m (49.5ms)[0m  COMMIT
+DEPRECATION WARNING: `#deliver` is deprecated and will be removed in Rails 5. Use `#deliver_now` to deliver immediately or `#deliver_later` to deliver through Active Job. (called from block in create at /home/dany/Worksapce/ayako_page/app/controllers/orders_controller.rb:39)
+  Rendered order_notifier/received.html.erb within layouts/mailer (0.1ms)
+  [1m[36mLineItem Load (0.5ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = $1[0m  [["order_id", 5]]
+  Rendered collection (0.0ms)
+  Rendered order_notifier/received.text.erb within layouts/mailer (2.7ms)
+
+OrderNotifier#received: processed outbound mail in 22.6ms
+
+Sent mail to danysc2@gmail.com (1271.0ms)
+Date: Sat, 11 Apr 2015 06:28:32 +0200
+From: Ayako Kyodo <ayako.kyodo@example.com
+To: danysc2@gmail.com
+Message-ID: <5528a2f0a8aa8_51f63feceabc0734533b3@dany-530U4E-540U4E.mail>
+Subject: Ayako Kyodo Order Confirmation
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5528a2f0a709e_51f63feceabc07345328b";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5528a2f0a709e_51f63feceabc07345328b
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Dear dani
+
+Thank you for your recent order from my webpage.
+
+Im glad you found something you like.
+
+You ordered the following pictures:
+
+
+
+
+----==_mimepart_5528a2f0a709e_51f63feceabc07345328b
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1>OrderNotifier#received</h1>
+
+<p>
+  , find me in app/views/order_notifier/received.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_5528a2f0a709e_51f63feceabc07345328b--
+
+Completed 500 Internal Server Error in 1495ms
+
+Net::SMTPAuthenticationError (535-5.7.8 Username and Password not accepted. Learn more at
+):
+  app/controllers/orders_controller.rb:39:in `block in create'
+  app/controllers/orders_controller.rb:35:in `create'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.9ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (32.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (21.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (44.1ms)
+
+
+Started GET "/orders" for 127.0.0.1 at 2015-04-11 06:29:50 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by OrdersController#index as HTML
+  [1m[35mOrder Load (1.5ms)[0m  SELECT "orders".* FROM "orders"
+  Rendered orders/index.html.erb within layouts/application (31.7ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 272ms (Views: 244.2ms | ActiveRecord: 8.7ms)
+
+
+Started GET "/shop" for 127.0.0.1 at 2015-04-11 06:29:55 +0200
+Processing by PicturesController#shop as HTML
+  [1m[36mPicture Load (1.2ms)[0m  [1mSELECT "pictures".* FROM "pictures" WHERE "pictures"."for_sale" = 't'[0m
+  Rendered pictures/shop.html.erb within layouts/application (22.3ms)
+  Rendered layouts/_navigation.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 183ms (Views: 160.6ms | ActiveRecord: 5.6ms)
+
+
+Started POST "/line_items?picture_id=3" for 127.0.0.1 at 2015-04-11 06:29:56 +0200
+Processing by LineItemsController#create as HTML
+  Parameters: {"authenticity_token"=>"1SQBczvMyK/7KSSx3tW84seSbgg3jqdKR9ecgrqGhA+IiWt2W+1V/tV6jsFdMLMp8E4hihc0z6Ep7rrrgyTlyw==", "picture_id"=>"3"}
+  [1m[35mCart Load (0.6ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "carts" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2015-04-11 04:29:56.622931"], ["updated_at", "2015-04-11 04:29:56.622931"]]
+  [1m[36m (115.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mPicture Load (0.7ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mLineItem Load (1.4ms)[0m  [1mSELECT  "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1 AND "line_items"."picture_id" = $2 LIMIT 1[0m  [["cart_id", 13], ["picture_id", 3]]
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (1.8ms)[0m  [1mINSERT INTO "line_items" ("picture_id", "cart_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["picture_id", 3], ["cart_id", 13], ["created_at", "2015-04-11 04:29:56.789351"], ["updated_at", "2015-04-11 04:29:56.789351"]]
+  [1m[35m (23.8ms)[0m  COMMIT
+Redirected to http://localhost:3000/carts/13
+Completed 302 Found in 219ms (ActiveRecord: 151.5ms)
+
+
+Started GET "/carts/13" for 127.0.0.1 at 2015-04-11 06:29:56 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mCart Load (0.4ms)[0m  [1mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1[0m  [["id", 13]]
+  [1m[35mLineItem Load (0.6ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 13]]
+  [1m[36mPicture Load (0.6ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  Rendered carts/show.html.erb within layouts/application (26.4ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 228ms (Views: 224.3ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2015-04-11 06:30:00 +0200
+Processing by OrdersController#new as HTML
+  [1m[35mCart Load (0.6ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 13]]
+  [1m[36mLineItem Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "line_items" WHERE "line_items"."cart_id" = $1 LIMIT 1[0m  [["cart_id", 13]]
+  Rendered orders/_form.html.erb (15.8ms)
+  Rendered orders/new.html.erb within layouts/application (17.1ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 166ms (Views: 150.7ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2015-04-11 06:30:11 +0200
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dqxQpsayunJzO5tVATR6trxFcMTAtdJmy2Gam4dx1KYrATqjppMnI11oMSWC0XV9i5k/RuAPuo2lWLzyvtO1Yg==", "order"=>{"name"=>"dani", "adress"=>"fsdfsdf", "email"=>"daniel.herzog.work@outlook.com", "pay_type"=>"Rechnung"}, "commit"=>"Place Order"}
+  [1m[35mCart Load (0.5ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 13]]
+  [1m[36mLineItem Load (0.5ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1[0m  [["cart_id", 13]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "orders" ("name", "adress", "email", "pay_type", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "dani"], ["adress", "fsdfsdf"], ["email", "daniel.herzog.work@outlook.com"], ["pay_type", "Rechnung"], ["created_at", "2015-04-11 04:30:11.494677"], ["updated_at", "2015-04-11 04:30:11.494677"]]
+  [1m[35mSQL (0.7ms)[0m  UPDATE "line_items" SET "cart_id" = $1, "order_id" = $2, "updated_at" = $3 WHERE "line_items"."id" = $4  [["cart_id", nil], ["order_id", 6], ["updated_at", "2015-04-11 04:30:11.497890"], ["id", 23]]
+  [1m[36m (60.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mCart Load (0.7ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 13]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mLineItem Load (0.6ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 13]]
+  [1m[36mSQL (1.1ms)[0m  [1mDELETE FROM "carts" WHERE "carts"."id" = $1[0m  [["id", 13]]
+  [1m[35m (71.8ms)[0m  COMMIT
+DEPRECATION WARNING: `#deliver` is deprecated and will be removed in Rails 5. Use `#deliver_now` to deliver immediately or `#deliver_later` to deliver through Active Job. (called from block in create at /home/dany/Worksapce/ayako_page/app/controllers/orders_controller.rb:39)
+  Rendered order_notifier/received.html.erb within layouts/mailer (0.5ms)
+  [1m[36mPicture Load (1.0ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  Rendered line_items/_line_item.text.erb (2.8ms)
+  Rendered order_notifier/received.text.erb within layouts/mailer (5.0ms)
+
+OrderNotifier#received: processed outbound mail in 204.7ms
+
+Sent mail to daniel.herzog.work@outlook.com (1935.2ms)
+Date: Sat, 11 Apr 2015 06:30:11 +0200
+From: Ayako Kyodo <ayako.kyodo@example.com
+To: daniel.herzog.work@outlook.com
+Message-ID: <5528a353d3d32_524424f31b4997c@dany-530U4E-540U4E.mail>
+Subject: Ayako Kyodo Order Confirmation
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5528a353d1783_524424f31b499657";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5528a353d1783_524424f31b499657
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Dear dani
+
+Thank you for your recent order from my webpage.
+
+Im glad you found something you like.
+
+You ordered the following pictures:
+
+1 x intim 2
+
+
+----==_mimepart_5528a353d1783_524424f31b499657
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1>OrderNotifier#received</h1>
+
+<p>
+  , find me in app/views/order_notifier/received.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_5528a353d1783_524424f31b499657--
+
+Completed 500 Internal Server Error in 2315ms
+
+Net::SMTPAuthenticationError (534-5.7.14 <https://accounts.google.com/ContinueSignIn?sarp=1&scc=1&plt=AKgnsbvlZ
+):
+  app/controllers/orders_controller.rb:39:in `block in create'
+  app/controllers/orders_controller.rb:35:in `create'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (33.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (20.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (42.5ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2015-04-11 06:33:17 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dqxQpsayunJzO5tVATR6trxFcMTAtdJmy2Gam4dx1KYrATqjppMnI11oMSWC0XV9i5k/RuAPuo2lWLzyvtO1Yg==", "order"=>{"name"=>"dani", "adress"=>"fsdfsdf", "email"=>"daniel.herzog.work@outlook.com", "pay_type"=>"Rechnung"}, "commit"=>"Place Order"}
+  [1m[35mCart Load (0.9ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 13]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "carts" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2015-04-11 04:33:18.032794"], ["updated_at", "2015-04-11 04:33:18.032794"]]
+  [1m[36m (26.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mLineItem Load (1.5ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 14]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "orders" ("name", "adress", "email", "pay_type", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "dani"], ["adress", "fsdfsdf"], ["email", "daniel.herzog.work@outlook.com"], ["pay_type", "Rechnung"], ["created_at", "2015-04-11 04:33:18.121767"], ["updated_at", "2015-04-11 04:33:18.121767"]]
+  [1m[36m (6.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mCart Load (0.8ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 14]]
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mLineItem Load (1.0ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 14]]
+  [1m[36mSQL (1.4ms)[0m  [1mDELETE FROM "carts" WHERE "carts"."id" = $1[0m  [["id", 14]]
+  [1m[35m (12.2ms)[0m  COMMIT
+DEPRECATION WARNING: `#deliver` is deprecated and will be removed in Rails 5. Use `#deliver_now` to deliver immediately or `#deliver_later` to deliver through Active Job. (called from block in create at /home/dany/Worksapce/ayako_page/app/controllers/orders_controller.rb:39)
+  Rendered order_notifier/received.html.erb within layouts/mailer (2.0ms)
+  [1m[36mLineItem Load (0.5ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = $1[0m  [["order_id", 7]]
+  Rendered collection (0.0ms)
+  Rendered order_notifier/received.text.erb within layouts/mailer (8.1ms)
+
+OrderNotifier#received: processed outbound mail in 255.4ms
+
+Sent mail to daniel.herzog.work@outlook.com (1032.6ms)
+Date: Sat, 11 Apr 2015 06:33:18 +0200
+From: Ayako Kyodo <ayako.kyodo@example.com
+To: daniel.herzog.work@outlook.com
+Message-ID: <5528a40e6af39_52c1243608c68947@dany-530U4E-540U4E.mail>
+Subject: Ayako Kyodo Order Confirmation
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5528a40e684b9_52c1243608c688e9";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5528a40e684b9_52c1243608c688e9
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Dear dani
+
+Thank you for your recent order from my webpage.
+
+Im glad you found something you like.
+
+You ordered the following pictures:
+
+
+
+
+----==_mimepart_5528a40e684b9_52c1243608c688e9
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1>OrderNotifier#received</h1>
+
+<p>
+  , find me in app/views/order_notifier/received.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_5528a40e684b9_52c1243608c688e9--
+
+Completed 500 Internal Server Error in 1480ms
+
+Net::SMTPFatalError (555 5.5.2 Syntax error. w8sm1096303wja.4 - gsmtp
+):
+  app/controllers/orders_controller.rb:39:in `block in create'
+  app/controllers/orders_controller.rb:35:in `create'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (33.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (20.9ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (43.0ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2015-04-11 06:38:59 +0200
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dqxQpsayunJzO5tVATR6trxFcMTAtdJmy2Gam4dx1KYrATqjppMnI11oMSWC0XV9i5k/RuAPuo2lWLzyvtO1Yg==", "order"=>{"name"=>"dani", "adress"=>"fsdfsdf", "email"=>"daniel.herzog.work@outlook.com", "pay_type"=>"Rechnung"}, "commit"=>"Place Order"}
+  [1m[35mCart Load (0.5ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 13]]
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "carts" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2015-04-11 04:39:00.080189"], ["updated_at", "2015-04-11 04:39:00.080189"]]
+  [1m[36m (46.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mLineItem Load (0.6ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 15]]
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "orders" ("name", "adress", "email", "pay_type", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "dani"], ["adress", "fsdfsdf"], ["email", "daniel.herzog.work@outlook.com"], ["pay_type", "Rechnung"], ["created_at", "2015-04-11 04:39:00.161012"], ["updated_at", "2015-04-11 04:39:00.161012"]]
+  [1m[36m (86.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mCart Load (0.7ms)[0m  SELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT 1  [["id", 15]]
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mLineItem Load (0.5ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = $1  [["cart_id", 15]]
+  [1m[36mSQL (0.7ms)[0m  [1mDELETE FROM "carts" WHERE "carts"."id" = $1[0m  [["id", 15]]
+  [1m[35m (20.9ms)[0m  COMMIT
+DEPRECATION WARNING: `#deliver` is deprecated and will be removed in Rails 5. Use `#deliver_now` to deliver immediately or `#deliver_later` to deliver through Active Job. (called from block in create at /home/dany/Worksapce/ayako_page/app/controllers/orders_controller.rb:39)
+  Rendered order_notifier/received.html.erb within layouts/mailer (0.1ms)
+  [1m[36mLineItem Load (0.9ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = $1[0m  [["order_id", 8]]
+  Rendered collection (0.0ms)
+  Rendered order_notifier/received.text.erb within layouts/mailer (4.4ms)
+
+OrderNotifier#received: processed outbound mail in 23.3ms
+
+Sent mail to daniel.herzog.work@outlook.com (4292.5ms)
+Date: Sat, 11 Apr 2015 06:39:00 +0200
+From: Ayako Kyodo ayako.kyodo@example.com
+To: daniel.herzog.work@outlook.com
+Message-ID: <5528a56450795_52c13ff89c6d3d08691c1@dany-530U4E-540U4E.mail>
+Subject: Ayako Kyodo Order Confirmation
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5528a5644e412_52c13ff89c6d3d08690a1";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5528a5644e412_52c13ff89c6d3d08690a1
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Dear dani
+
+Thank you for your recent order from my webpage.
+
+Im glad you found something you like.
+
+You ordered the following pictures:
+
+
+
+
+----==_mimepart_5528a5644e412_52c13ff89c6d3d08690a1
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <h1>OrderNotifier#received</h1>
+
+<p>
+  , find me in app/views/order_notifier/received.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_5528a5644e412_52c13ff89c6d3d08690a1--
+
+Redirected to http://localhost:3000/shop
+Completed 302 Found in 4556ms (ActiveRecord: 166.8ms)
+
+
+Started GET "/shop" for 127.0.0.1 at 2015-04-11 06:39:04 +0200
+Processing by PicturesController#shop as HTML
+  [1m[35mPicture Load (0.6ms)[0m  SELECT "pictures".* FROM "pictures" WHERE "pictures"."for_sale" = 't'
+  Rendered pictures/shop.html.erb within layouts/application (18.2ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 279ms (Views: 264.8ms | ActiveRecord: 3.2ms)
