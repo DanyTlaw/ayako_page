@@ -44,6 +44,11 @@ a
     text-decoration: none;
 }
 
+a:hover{
+    text-decoration:none;
+}
+
+
 p{
    font-family: bookman;
 }
@@ -57,7 +62,7 @@ p{
     width: auto;
     height: 60px;
     float:left;
-    font-size: 60px;
+    font-size: 40px;
     padding-left: 20px;
     font-family: bookman;
 }
@@ -119,6 +124,11 @@ nav .current_page_item a
 {
     background: #2F4F4F;
     color: #FFF;
+}
+
+.post-button{
+    float: right;
+    margin-top: 5px;
 }
 
 section{
