@@ -1,0 +1,33 @@
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :adress %><br>
+    <%= f.text_area :adress, rows: 3,class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email %><br>
+    <%= f.text_field :email,class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :pay_type %><br>
+    <%= f.select(:pay_type, Order::PAYMENT_TYPES, {include_blank: "Select a payment method"}, { :class => 'form-control' }) %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Place Order", class: "btn btn-success"%>
+  </div>
+<% end %>

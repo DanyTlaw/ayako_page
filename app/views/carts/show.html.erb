@@ -1,0 +1,53 @@
+<% if notice %>
+	<p id="notice"><%= notice %></p>
+<% end %>
+  <fieldset>
+    <legend>Your Cart</legend>
+  </fieldset>
+<div class="col-md-9">
+	<div class="panel panel-default">
+	<div class="panel-body">
+		<% @cart.line_items.each do |item| %>
+		<div class="col-md-3" style="clear: both;">
+			<div class="img-wrapper-thumb">
+				<div class="imgbox">
+					<%= image_tag item.picture.url_url(:thumb) %>
+					<span class="caption fade-caption">
+						<h3><%= item.picture.name%></h3>
+						<p>Text den du möchtest</p>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<table class="cart">
+				<tr>
+					<td><%= item.quantity %> &times; <%= item.picture.name %></td>
+					<td class="price"><%= number_to_currency(item.total_price)%></td>
+				</tr>
+			</table>
+		</div>
+
+		<% end %>
+			<div class="button-wrapper">
+				<%= button_to 'Empty Cart', @cart, method: :delete, data:{ confirm: 'Are you sure'}, class: "btn btn-warning"%>
+			</div>
+		</div>
+	</div>
+</div>
+	<div class="col-md-3">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<table class="cart">
+					<tr>
+						<td>Total:</td>
+						<td class="price"><%= number_to_currency(@cart.total_price)%></td>
+					</tr>
+				</table>	
+				<div class="button-wrapper">
+					<%= button_to "Checkout", new_order_path, method: :get, class: "btn btn-success"%>
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>

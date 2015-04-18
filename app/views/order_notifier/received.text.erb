@@ -1,0 +1,10 @@
+Dear <%= @order.name %>
+
+Thank you for your recent order from my webpage.
+
+Im glad you found something you like.
+
+You ordered the following pictures:
+
+<%= render @order.line_items -%>
+
