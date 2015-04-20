@@ -13,10 +13,14 @@ Rails.application.routes.draw do
 
   resources :carts
 
-  resources :themes do 
+  resources :themes do
   	  resources :pictures
   end
 
+
+  match '/contacts',     to: 'contacts#new',             via: 'get'
+  resources "contacts", only: [:new, :create]
+  
   get "/shop" => "pictures#shop"
   get "/about" => "statics#about"
 

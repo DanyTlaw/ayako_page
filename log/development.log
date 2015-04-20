@@ -28071,3 +28071,1342 @@ Processing by PostsController#show as HTML
   Rendered statics/_news.html.erb (2.3ms)
   Rendered layouts/_footer.html.erb (0.0ms)
 Completed 200 OK in 429ms (Views: 426.5ms | ActiveRecord: 1.3ms)
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (134.5ms)[0m  CREATE TABLE "active_admin_comments" ("id" serial primary key, "namespace" character varying, "body" text, "resource_id" character varying NOT NULL, "resource_type" character varying NOT NULL, "author_id" integer, "author_type" character varying, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (71.0ms)[0m  [1mCREATE  INDEX  "index_active_admin_comments_on_author_type_and_author_id" ON "active_admin_comments" USING btree ("author_type", "author_id")[0m
+  [1m[35m (63.2ms)[0m  CREATE  INDEX  "index_active_admin_comments_on_namespace" ON "active_admin_comments" USING btree ("namespace")
+  [1m[36m (72.2ms)[0m  [1mCREATE  INDEX  "index_active_admin_comments_on_resource_type_and_resource_id" ON "active_admin_comments" USING btree ("resource_type", "resource_id")[0m
+  [1m[35m (95.1ms)[0m  CREATE TABLE "admin_users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (65.3ms)[0m  [1mCREATE UNIQUE INDEX  "index_admin_users_on_email" ON "admin_users" USING btree ("email")[0m
+  [1m[35m (61.6ms)[0m  CREATE UNIQUE INDEX  "index_admin_users_on_reset_password_token" ON "admin_users" USING btree ("reset_password_token")
+  [1m[36m (65.5ms)[0m  [1mCREATE TABLE "carts" ("id" serial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (63.3ms)[0m  CREATE TABLE "line_items" ("id" serial primary key, "picture_id" integer, "cart_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "quantity" integer DEFAULT 1, "order_id" integer) 
+  [1m[36m (61.9ms)[0m  [1mCREATE  INDEX  "index_line_items_on_cart_id" ON "line_items" USING btree ("cart_id")[0m
+  [1m[35m (63.1ms)[0m  CREATE  INDEX  "index_line_items_on_order_id" ON "line_items" USING btree ("order_id")
+  [1m[36m (72.5ms)[0m  [1mCREATE  INDEX  "index_line_items_on_picture_id" ON "line_items" USING btree ("picture_id")[0m
+  [1m[35m (97.2ms)[0m  CREATE TABLE "orders" ("id" serial primary key, "name" character varying, "adress" text, "email" character varying, "pay_type" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (105.9ms)[0m  [1mCREATE TABLE "pictures" ("id" serial primary key, "name" character varying, "price" integer, "count" integer, "url" character varying, "theme_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "for_sale" boolean, "type" character varying, "version" integer) [0m
+  [1m[35m (96.6ms)[0m  CREATE TABLE "post_images" ("id" serial primary key, "name" character varying, "image" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "post_id" integer) 
+  [1m[36m (104.7ms)[0m  [1mCREATE TABLE "posts" ("id" serial primary key, "title" character varying, "content" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (105.0ms)[0m  CREATE TABLE "themes" ("id" serial primary key, "name" character varying, "size" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (7.9ms)[0m  [1mALTER TABLE "line_items" ADD CONSTRAINT "fk_rails_6c1f396795"
+FOREIGN KEY ("cart_id")
+  REFERENCES "carts" ("id")
+[0m
+  [1m[35m (7.7ms)[0m  ALTER TABLE "line_items" ADD CONSTRAINT "fk_rails_01d9149204"
+FOREIGN KEY ("order_id")
+  REFERENCES "orders" ("id")
+
+  [1m[36m (8.1ms)[0m  [1mALTER TABLE "line_items" ADD CONSTRAINT "fk_rails_e2029ecbda"
+FOREIGN KEY ("picture_id")
+  REFERENCES "pictures" ("id")
+[0m
+  [1m[35m (62.8ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (69.2ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (1.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (5.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150412053238')[0m
+  [1m[35m (7.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150411010802')
+  [1m[36m (8.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150408033635')[0m
+  [1m[35m (7.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150410192622')
+  [1m[36m (8.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150412042631')[0m
+  [1m[35m (8.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150408033904')
+  [1m[36m (8.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150412042922')[0m
+  [1m[35m (8.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150411010819')
+  [1m[36m (8.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150410053603')[0m
+  [1m[35m (8.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150412000726')
+  [1m[36m (8.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150409223855')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150412052633')
+  [1m[36m (7.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150412000729')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150410192725')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150412052927')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150410054015')
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (94.3ms)[0m  CREATE TABLE "active_admin_comments" ("id" serial primary key, "namespace" character varying, "body" text, "resource_id" character varying NOT NULL, "resource_type" character varying NOT NULL, "author_id" integer, "author_type" character varying, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (71.1ms)[0m  [1mCREATE  INDEX  "index_active_admin_comments_on_author_type_and_author_id" ON "active_admin_comments" USING btree ("author_type", "author_id")[0m
+  [1m[35m (70.2ms)[0m  CREATE  INDEX  "index_active_admin_comments_on_namespace" ON "active_admin_comments" USING btree ("namespace")
+  [1m[36m (71.2ms)[0m  [1mCREATE  INDEX  "index_active_admin_comments_on_resource_type_and_resource_id" ON "active_admin_comments" USING btree ("resource_type", "resource_id")[0m
+  [1m[35m (104.8ms)[0m  CREATE TABLE "admin_users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (72.7ms)[0m  [1mCREATE UNIQUE INDEX  "index_admin_users_on_email" ON "admin_users" USING btree ("email")[0m
+  [1m[35m (61.6ms)[0m  CREATE UNIQUE INDEX  "index_admin_users_on_reset_password_token" ON "admin_users" USING btree ("reset_password_token")
+  [1m[36m (73.6ms)[0m  [1mCREATE TABLE "carts" ("id" serial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (89.9ms)[0m  CREATE TABLE "line_items" ("id" serial primary key, "picture_id" integer, "cart_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "quantity" integer DEFAULT 1, "order_id" integer) 
+  [1m[36m (61.1ms)[0m  [1mCREATE  INDEX  "index_line_items_on_cart_id" ON "line_items" USING btree ("cart_id")[0m
+  [1m[35m (62.3ms)[0m  CREATE  INDEX  "index_line_items_on_order_id" ON "line_items" USING btree ("order_id")
+  [1m[36m (55.0ms)[0m  [1mCREATE  INDEX  "index_line_items_on_picture_id" ON "line_items" USING btree ("picture_id")[0m
+  [1m[35m (138.0ms)[0m  CREATE TABLE "orders" ("id" serial primary key, "name" character varying, "adress" text, "email" character varying, "pay_type" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (113.5ms)[0m  [1mCREATE TABLE "pictures" ("id" serial primary key, "name" character varying, "price" integer, "count" integer, "url" character varying, "theme_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "for_sale" boolean, "type" character varying, "version" integer) [0m
+  [1m[35m (131.8ms)[0m  CREATE TABLE "post_images" ("id" serial primary key, "name" character varying, "image" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "post_id" integer) 
+  [1m[36m (113.5ms)[0m  [1mCREATE TABLE "posts" ("id" serial primary key, "title" character varying, "content" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (139.4ms)[0m  CREATE TABLE "themes" ("id" serial primary key, "name" character varying, "size" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (7.8ms)[0m  [1mALTER TABLE "line_items" ADD CONSTRAINT "fk_rails_e6755fca28"
+FOREIGN KEY ("cart_id")
+  REFERENCES "carts" ("id")
+[0m
+  [1m[35m (7.3ms)[0m  ALTER TABLE "line_items" ADD CONSTRAINT "fk_rails_d2ea9293a8"
+FOREIGN KEY ("order_id")
+  REFERENCES "orders" ("id")
+
+  [1m[36m (7.2ms)[0m  [1mALTER TABLE "line_items" ADD CONSTRAINT "fk_rails_b7d157df70"
+FOREIGN KEY ("picture_id")
+  REFERENCES "pictures" ("id")
+[0m
+  [1m[35m (65.5ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (63.4ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.6ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150412053238')[0m
+  [1m[35m (8.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150411010802')
+  [1m[36m (8.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150408033635')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150410192622')
+  [1m[36m (7.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150412042631')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150408033904')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150412042922')[0m
+  [1m[35m (7.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150411010819')
+  [1m[36m (8.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150410053603')[0m
+  [1m[35m (8.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150412000726')
+  [1m[36m (8.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150409223855')[0m
+  [1m[35m (7.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150412052633')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150412000729')[0m
+  [1m[35m (8.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150410192725')
+  [1m[36m (7.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150412052927')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150410054015')
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "themes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Aquarelle 2010"], ["created_at", "2015-04-20 11:02:25.790473"], ["updated_at", "2015-04-20 11:02:25.790473"]]
+  [1m[35m (24.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "themes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "DIPLOM ORT 2010"], ["created_at", "2015-04-20 11:02:25.819193"], ["updated_at", "2015-04-20 11:02:25.819193"]]
+  [1m[36m (4.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "themes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Aquarelle Blumen"], ["created_at", "2015-04-20 11:02:25.828655"], ["updated_at", "2015-04-20 11:02:25.828655"]]
+  [1m[35m (10.0ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "themes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Drawing 2013"], ["created_at", "2015-04-20 11:02:25.844878"], ["updated_at", "2015-04-20 11:02:25.844878"]]
+  [1m[36m (3.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "themes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Druckgrafik 2005-2009"], ["created_at", "2015-04-20 11:02:25.851989"], ["updated_at", "2015-04-20 11:02:25.851989"]]
+  [1m[35m (5.6ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "themes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Insideout"], ["created_at", "2015-04-20 11:02:25.861272"], ["updated_at", "2015-04-20 11:02:25.861272"]]
+  [1m[36m (4.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "themes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Intimitaet"], ["created_at", "2015-04-20 11:02:25.868895"], ["updated_at", "2015-04-20 11:02:25.868895"]]
+  [1m[35m (5.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "themes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Kunstgeschichte Skizzen"], ["created_at", "2015-04-20 11:02:25.877246"], ["updated_at", "2015-04-20 11:02:25.877246"]]
+  [1m[36m (5.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "themes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "ma vie, ta vie"], ["created_at", "2015-04-20 11:02:25.885594"], ["updated_at", "2015-04-20 11:02:25.885594"]]
+  [1m[35m (5.4ms)[0m  COMMIT
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "themes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Nengajo"], ["created_at", "2015-04-20 11:02:25.894917"], ["updated_at", "2015-04-20 11:02:25.894917"]]
+  [1m[36m (2.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "themes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Painting und Sketch -2005"], ["created_at", "2015-04-20 11:02:25.902586"], ["updated_at", "2015-04-20 11:02:25.902586"]]
+  [1m[35m (4.7ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "themes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Pause"], ["created_at", "2015-04-20 11:02:25.910525"], ["updated_at", "2015-04-20 11:02:25.910525"]]
+  [1m[36m (5.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "themes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Siebdruck Hilton"], ["created_at", "2015-04-20 11:02:25.918928"], ["updated_at", "2015-04-20 11:02:25.918928"]]
+  [1m[35m (5.3ms)[0m  COMMIT
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "themes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Steindruck"], ["created_at", "2015-04-20 11:02:25.928871"], ["updated_at", "2015-04-20 11:02:25.928871"]]
+  [1m[36m (2.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "themes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Werke freie Landschaft"], ["created_at", "2015-04-20 11:02:25.935991"], ["updated_at", "2015-04-20 11:02:25.935991"]]
+  [1m[35m (5.1ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mAdminUser Exists (1.6ms)[0m  SELECT  1 AS one FROM "admin_users" WHERE "admin_users"."email" = 'admin@example.com' LIMIT 1
+  [1m[36mAdminUser Exists (1.3ms)[0m  [1mSELECT  1 AS one FROM "admin_users" WHERE "admin_users"."email" = 'admin@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "admin_users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["email", "admin@example.com"], ["encrypted_password", "$2a$10$C9H6obt7.BVHdnXI.nxseOzXhngKt2JHpcjJk9iSkVohQveWLSzXK"], ["created_at", "2015-04-20 11:02:26.061437"], ["updated_at", "2015-04-20 11:02:26.061437"]]
+  [1m[36m (18.2ms)[0m  [1mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'active_admin_comments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'admin_users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'carts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'line_items'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (5.7ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'orders'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'pictures'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.4ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'post_images'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'posts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.4ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'themes'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+
+
+Started GET "/javascripts/prototype.js" for 127.0.0.1 at 2015-04-20 13:02:51 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActionController::RoutingError (No route matches [GET] "/javascripts/prototype.js"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (9.9ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (5.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (23.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (124.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (23.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (47.4ms)
+
+
+Started GET "/javascripts/effects.js" for 127.0.0.1 at 2015-04-20 13:02:51 +0200
+
+ActionController::RoutingError (No route matches [GET] "/javascripts/effects.js"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (8.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (76.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (23.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (44.5ms)
+
+
+Started GET "/images/rails.png" for 127.0.0.1 at 2015-04-20 13:02:52 +0200
+
+ActionController::RoutingError (No route matches [GET] "/images/rails.png"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (6.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (80.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (20.9ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (41.0ms)
+
+
+Started GET "/pictures" for 127.0.0.1 at 2015-04-20 13:03:14 +0200
+
+ActionController::RoutingError (No route matches [GET] "/pictures"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (6.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (65.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (20.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (45.4ms)
+
+
+Started GET "/themes" for 127.0.0.1 at 2015-04-20 13:03:23 +0200
+Processing by ThemesController#index as HTML
+  [1m[35mTheme Load (0.8ms)[0m  SELECT "themes".* FROM "themes"
+  [1m[36mPicture Load (1.0ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 1]]
+  [1m[35mPicture Load (0.6ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 2]]
+  [1m[36mPicture Load (0.6ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 3]]
+  [1m[35mPicture Load (0.8ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 4]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 5]]
+  [1m[35mPicture Load (0.7ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 6]]
+  [1m[36mPicture Load (0.6ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 7]]
+  [1m[35mPicture Load (1.1ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 8]]
+  [1m[36mPicture Load (0.8ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 9]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 10]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 11]]
+  [1m[35mPicture Load (0.3ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 12]]
+  [1m[36mPicture Load (0.3ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 13]]
+  [1m[35mPicture Load (0.3ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 14]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 15]]
+  Rendered themes/index.html.erb within layouts/application (85.0ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+  [1m[35mPost Load (0.8ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered statics/_news.html.erb (3.6ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 752ms (Views: 732.6ms | ActiveRecord: 18.5ms)
+
+
+Started GET "/assets/carts-bc5988513c74eba35d9721b00bd4d6fb.css?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/line_items-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/pictures-66ab78b15e539770f4f058d027104519.css?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/post_images-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/posts-b5f2c396e7e86bd7f9a1e9f45ce40899.css?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/orders-5b390a533bb604ee449348bfefebf92c.css?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/scaffolds-ccc517b2e3ea6e7e86fc3c63706456a8.css?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/statics-1882563a638e4b6ca12ce5f4d73fbc6e.css?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/themes-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/application-a5db34dd90539827e551aaa9db85937c.css?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/jquery.dotdotdot-00e2412bd62d54126cb758053793094f.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/jquery-ui/core-f6c29219d44f4267c6c5f748cb73851a.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/jquery-ui/datepicker-28441b2cd45f0545c8a439f40b98d784.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/jquery-ui/widget-406fc24d615dd4370e049e85fb5f549d.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/jquery-ui/button-a8037a4250da171316b7e7521b0d9d0b.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/jquery-ui/mouse-504ef967eca0eb03967e3c9751c36d17.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/jquery-ui/draggable-d158b51e489137b213fd1eaa96a9b92a.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/jquery-ui/position-65ef6bd55aa64766623cc74b5d7d353d.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/jquery-ui/resizable-aa565fd6aa9f42700d8c54b318c0c1c8.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/jquery-ui/dialog-ee62065c80cb02fe6e91bf5811c59c91.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/jquery-ui/sortable-fe96bfa9ff14377c0dc83b42d0f191e4.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/jquery-ui/tabs-7d723642f0cea4ad8b4be12b7af40214.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/active_admin/base-8022828b753545dc719381c1d979244e.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/active_admin/lib/batch_actions-5706928449a7d192adcb4c959b623cf6.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/active_admin/lib/checkbox-toggler-71efe70af420ba0aef07b4e19fc2fc06.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/active_admin/lib/dropdown-menu-0d4c387b749f3fc1d71179e523ab4e49.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/active_admin/lib/flash-3b192e46aa7cfb84564bb46620d3c28a.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:24 +0200
+
+
+Started GET "/assets/active_admin/lib/has_many-64f8975fc252419139c3a62d16c53777.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/active_admin/lib/modal_dialog-400dfa6502091f82a5e3941b8a771c46.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/active_admin/lib/per_page-239488a1a0b13f3cda3dddf002b6ed21.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/active_admin/lib/table-checkbox-toggler-18530342f84893188506c0a48a10be15.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/active_admin/ext/jquery-ui-5963f9f0bd7887f07217b87c96e27f88.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/active_admin/ext/jquery-22727936bd5e807603d51c2a59b45b7d.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/active_admin/application-05696a26e5d54a1514c12845c4392189.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/active_admin-9a6b798cb39ba9f1c4cb69f1c03544b6.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/carts-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/line_items-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/orders-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/pictures-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/post_images-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/posts-fb7a23ed9159b3b7fa2e8a300dab2be0.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/statics-a0255338ca2f683efb8076f53135eeb0.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/themes-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/assets/application-5a5349e14f0c37fa04da4dd26ac39da0.js?body=1" for 127.0.0.1 at 2015-04-20 13:03:25 +0200
+
+
+Started GET "/posts" for 127.0.0.1 at 2015-04-20 13:04:17 +0200
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_navigation.html.erb (0.4ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered statics/_news.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 387ms (Views: 384.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/themes" for 127.0.0.1 at 2015-04-20 13:04:20 +0200
+Processing by ThemesController#index as HTML
+  [1m[36mTheme Load (0.5ms)[0m  [1mSELECT "themes".* FROM "themes"[0m
+  [1m[35mPicture Load (0.6ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 1]]
+  [1m[36mPicture Load (0.8ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 2]]
+  [1m[35mPicture Load (0.6ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 3]]
+  [1m[36mPicture Load (0.9ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 4]]
+  [1m[35mPicture Load (0.6ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 5]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 6]]
+  [1m[35mPicture Load (0.3ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 7]]
+  [1m[36mPicture Load (0.3ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 8]]
+  [1m[35mPicture Load (0.3ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 9]]
+  [1m[36mPicture Load (0.3ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 10]]
+  [1m[35mPicture Load (0.5ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 11]]
+  [1m[36mPicture Load (0.3ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 12]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 13]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 14]]
+  [1m[35mPicture Load (0.5ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 15]]
+  Rendered themes/index.html.erb within layouts/application (30.3ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  Rendered statics/_news.html.erb (1.9ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 416ms (Views: 407.5ms | ActiveRecord: 8.1ms)
+
+
+Started GET "/shop" for 127.0.0.1 at 2015-04-20 13:04:26 +0200
+Processing by PicturesController#shop as HTML
+  [1m[35mPicture Load (0.6ms)[0m  SELECT "pictures".* FROM "pictures" WHERE "pictures"."for_sale" = 't'
+  Rendered pictures/shop.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_navigation.html.erb (0.4ms)
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  Rendered statics/_news.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 415ms (Views: 391.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/themes" for 127.0.0.1 at 2015-04-20 13:04:28 +0200
+Processing by ThemesController#index as HTML
+  [1m[35mTheme Load (0.6ms)[0m  SELECT "themes".* FROM "themes"
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 1]]
+  [1m[35mPicture Load (0.3ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 2]]
+  [1m[36mPicture Load (0.2ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 3]]
+  [1m[35mPicture Load (0.2ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 4]]
+  [1m[36mPicture Load (0.2ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 5]]
+  [1m[35mPicture Load (0.5ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 6]]
+  [1m[36mPicture Load (0.3ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 7]]
+  [1m[35mPicture Load (0.3ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 8]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 9]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 10]]
+  [1m[36mPicture Load (0.5ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 11]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 12]]
+  [1m[36mPicture Load (0.3ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 13]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 14]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 15]]
+  Rendered themes/index.html.erb within layouts/application (25.6ms)
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered statics/_news.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 417ms (Views: 409.2ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/about" for 127.0.0.1 at 2015-04-20 13:04:29 +0200
+Processing by StaticsController#about as HTML
+  Rendered statics/about.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  Rendered statics/_news.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 402ms (Views: 400.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/themes" for 127.0.0.1 at 2015-04-20 13:05:32 +0200
+Processing by ThemesController#index as HTML
+  [1m[35mTheme Load (0.5ms)[0m  SELECT "themes".* FROM "themes"
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 1]]
+  [1m[35mPicture Load (0.5ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 2]]
+  [1m[36mPicture Load (0.3ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 3]]
+  [1m[35mPicture Load (0.3ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 4]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 5]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 6]]
+  [1m[36mPicture Load (0.5ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 7]]
+  [1m[35mPicture Load (0.6ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 8]]
+  [1m[36mPicture Load (0.5ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 9]]
+  [1m[35mPicture Load (0.3ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 10]]
+  [1m[36mPicture Load (0.2ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 11]]
+  [1m[35mPicture Load (0.5ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 12]]
+  [1m[36mPicture Load (0.3ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 13]]
+  [1m[35mPicture Load (0.3ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 14]]
+  [1m[36mPicture Load (0.3ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 15]]
+  Rendered themes/index.html.erb within layouts/application (26.2ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  [1m[35mPost Load (0.8ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered statics/_news.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 429ms (Views: 421.1ms | ActiveRecord: 7.1ms)
+
+
+Started GET "/themes" for 127.0.0.1 at 2015-04-20 13:05:36 +0200
+Processing by ThemesController#index as HTML
+  [1m[36mTheme Load (0.5ms)[0m  [1mSELECT "themes".* FROM "themes"[0m
+  [1m[35mPicture Load (0.3ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 1]]
+  [1m[36mPicture Load (0.2ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 2]]
+  [1m[35mPicture Load (0.2ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 3]]
+  [1m[36mPicture Load (0.2ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 4]]
+  [1m[35mPicture Load (0.6ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 5]]
+  [1m[36mPicture Load (0.6ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 6]]
+  [1m[35mPicture Load (0.5ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 7]]
+  [1m[36mPicture Load (0.5ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 8]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 9]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 10]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 11]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 12]]
+  [1m[35mPicture Load (0.7ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 13]]
+  [1m[36mPicture Load (1.0ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 14]]
+  [1m[35mPicture Load (0.7ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 15]]
+  Rendered themes/index.html.erb within layouts/application (28.3ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  Rendered statics/_news.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 439ms (Views: 430.0ms | ActiveRecord: 8.3ms)
+
+
+Started GET "/themes" for 127.0.0.1 at 2015-04-20 13:05:38 +0200
+Processing by ThemesController#index as HTML
+  [1m[35mTheme Load (1.7ms)[0m  SELECT "themes".* FROM "themes"
+  [1m[36mPicture Load (0.6ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 1]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 2]]
+  [1m[36mPicture Load (0.2ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 3]]
+  [1m[35mPicture Load (0.2ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 4]]
+  [1m[36mPicture Load (0.2ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 5]]
+  [1m[35mPicture Load (0.2ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 6]]
+  [1m[36mPicture Load (0.2ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 7]]
+  [1m[35mPicture Load (0.2ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 8]]
+  [1m[36mPicture Load (0.6ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 9]]
+  [1m[35mPicture Load (0.3ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 10]]
+  [1m[36mPicture Load (0.2ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 11]]
+  [1m[35mPicture Load (0.2ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 12]]
+  [1m[36mPicture Load (0.2ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 13]]
+  [1m[35mPicture Load (0.2ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 14]]
+  [1m[36mPicture Load (0.2ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 15]]
+  Rendered themes/index.html.erb within layouts/application (25.4ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  [1m[35mPost Load (0.8ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered statics/_news.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 431ms (Views: 422.4ms | ActiveRecord: 6.9ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2015-04-20 13:05:39 +0200
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.7ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered statics/_news.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 427ms (Views: 425.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/kontakt.html" for 127.0.0.1 at 2015-04-20 13:05:40 +0200
+
+ActionController::RoutingError (No route matches [GET] "/kontakt.html"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (69.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (21.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (41.9ms)
+
+
+Started GET "/kontakt.html" for 127.0.0.1 at 2015-04-20 13:05:40 +0200
+
+ActionController::RoutingError (No route matches [GET] "/kontakt.html"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (9.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (70.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (22.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (42.1ms)
+
+
+Started GET "/themes" for 127.0.0.1 at 2015-04-20 13:14:36 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ThemesController#index as HTML
+  [1m[35mTheme Load (1.2ms)[0m  SELECT "themes".* FROM "themes"
+  [1m[36mPicture Load (0.6ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 1]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 2]]
+  [1m[36mPicture Load (0.4ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 3]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 4]]
+  [1m[36mPicture Load (0.6ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 5]]
+  [1m[35mPicture Load (0.6ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 6]]
+  [1m[36mPicture Load (0.5ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 7]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 8]]
+  [1m[36mPicture Load (0.6ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 9]]
+  [1m[35mPicture Load (0.6ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 10]]
+  [1m[36mPicture Load (0.6ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 11]]
+  [1m[35mPicture Load (0.5ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 12]]
+  [1m[36mPicture Load (0.5ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 13]]
+  [1m[35mPicture Load (0.4ms)[0m  SELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1  [["theme_id", 14]]
+  [1m[36mPicture Load (0.3ms)[0m  [1mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."theme_id" = $1  ORDER BY "pictures"."id" ASC LIMIT 1[0m  [["theme_id", 15]]
+  Rendered themes/index.html.erb within layouts/application (56.6ms)
+  Rendered layouts/_navigation.html.erb (0.9ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered statics/_news.html.erb (3.6ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 812ms (Views: 781.8ms | ActiveRecord: 18.4ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2015-04-20 13:14:39 +0200
+Processing by ContactsController#new as HTML
+  Rendered contacts/new.html.erb within layouts/application (21.8ms)
+Completed 500 Internal Server Error in 35ms
+
+ActionView::Template::Error (undefined method `simple_form_for' for #<#<Class:0x0000000603cbf8>:0x00000006029ad0>):
+    1: <div align="center">
+    2:   <h3>Send A message to Us</h3>
+    3: 
+    4:   <%= simple_form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>
+    5:     <%= f.input :name, :required => true %>
+    6:     <%= f.input :email, :required => true %>
+    7:     <%= f.input :message, :as => :text, :required => true %>
+  app/views/contacts/new.html.erb:4:in `_app_views_contacts_new_html_erb__1765515076009709712_50401240'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (13.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (44.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (22.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (43.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2015-04-20 13:14:39 +0200
+Processing by ContactsController#new as HTML
+  Rendered contacts/new.html.erb within layouts/application (21.4ms)
+Completed 500 Internal Server Error in 25ms
+
+ActionView::Template::Error (undefined method `simple_form_for' for #<#<Class:0x0000000603cbf8>:0x000000084580a0>):
+    1: <div align="center">
+    2:   <h3>Send A message to Us</h3>
+    3: 
+    4:   <%= simple_form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>
+    5:     <%= f.input :name, :required => true %>
+    6:     <%= f.input :email, :required => true %>
+    7:     <%= f.input :message, :as => :text, :required => true %>
+  app/views/contacts/new.html.erb:4:in `_app_views_contacts_new_html_erb__1765515076009709712_69161920'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (32.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (19.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (40.5ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2015-04-20 13:15:08 +0200
+Processing by ContactsController#new as HTML
+  Rendered contacts/new.html.erb within layouts/application (21.0ms)
+Completed 500 Internal Server Error in 25ms
+
+ActionView::Template::Error (undefined method `input' for #<ActionView::Helpers::FormBuilder:0x00000003134ea0>):
+    2:   <h3>Send A message to Us</h3>
+    3: 
+    4:   <%= form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>
+    5:     <%= f.input :name, :required => true %>
+    6:     <%= f.input :email, :required => true %>
+    7:     <%= f.input :message, :as => :text, :required => true %>
+    8:     <div class= "hidden">
+  app/views/contacts/new.html.erb:5:in `block in _app_views_contacts_new_html_erb__1765515076009709712_26279560'
+  app/views/contacts/new.html.erb:4:in `_app_views_contacts_new_html_erb__1765515076009709712_26279560'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (32.7ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (20.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (40.7ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2015-04-20 13:15:38 +0200
+Processing by ContactsController#new as HTML
+  Rendered contacts/new.html.erb within layouts/application (18.2ms)
+Completed 500 Internal Server Error in 21ms
+
+ActionView::Template::Error (undefined method `TextField' for #<ActionView::Helpers::FormBuilder:0x00000006f58650>):
+    2:   <h3>Send A message to Us</h3>
+    3: 
+    4:   <%= form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>
+    5:     <%= f.TextField :name, :required => true %>
+    6:     <%= f.TextField :email, :required => true %>
+    7:     <%= f.TextArea :message, :as => :text, :required => true %>
+    8:     <div class= "hidden">
+  app/views/contacts/new.html.erb:5:in `block in _app_views_contacts_new_html_erb__1765515076009709712_58454680'
+  app/views/contacts/new.html.erb:4:in `_app_views_contacts_new_html_erb__1765515076009709712_58454680'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (32.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (20.9ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (41.9ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2015-04-20 13:16:18 +0200
+Processing by ContactsController#new as HTML
+  Rendered contacts/new.html.erb within layouts/application (35.4ms)
+Completed 500 Internal Server Error in 39ms
+
+ActionView::Template::Error (undefined method `input' for #<ActionView::Helpers::FormBuilder:0x000000083c0ed0>):
+     6:     <%= f.text_field :email, :required => true %>
+     7:     <%= f.text_area :message, :as => :text, :required => true %>
+     8:     <div class= "hidden">
+     9:       <%= f.input :nickname, :hint => 'Leave this field blank!' %>
+    10:     </div>
+    11:     <div>
+    12:       </br>
+  app/views/contacts/new.html.erb:9:in `block in _app_views_contacts_new_html_erb__1765515076009709712_68633280'
+  app/views/contacts/new.html.erb:4:in `_app_views_contacts_new_html_erb__1765515076009709712_68633280'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (32.9ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (20.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (41.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2015-04-20 13:16:36 +0200
+Processing by ContactsController#new as HTML
+  Rendered contacts/new.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  [1m[36mPost Load (0.8ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  Rendered statics/_news.html.erb (1.6ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 405ms (Views: 403.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2015-04-20 13:17:36 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ContactsController#new as HTML
+  Rendered contacts/new.html.erb within layouts/application (95.0ms)
+  Rendered layouts/_navigation.html.erb (0.9ms)
+  [1m[35mPost Load (0.9ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered statics/_news.html.erb (4.2ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 794ms (Views: 772.7ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2015-04-20 13:18:55 +0200
+Processing by ContactsController#new as HTML
+  Rendered contacts/new.html.erb within layouts/application (14.3ms)
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  Rendered statics/_news.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 391ms (Views: 390.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2015-04-20 13:20:31 +0200
+Processing by ContactsController#new as HTML
+  Rendered contacts/new.html.erb within layouts/application (5.1ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (undefined method `errors' for nil:NilClass):
+    1: <div align="center">
+    2:   <h3>Send A message to Us</h3>
+    3: <%= form_for(@contact) do |f| %>
+    4:   <% if @order.errors.any? %>
+    5:     <div id="error_explanation">
+    6:       <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+    7: 
+  app/views/contacts/new.html.erb:4:in `block in _app_views_contacts_new_html_erb__2181023679491363698_60703440'
+  app/views/contacts/new.html.erb:3:in `_app_views_contacts_new_html_erb__2181023679491363698_60703440'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.8ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (30.9ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (28.1ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (48.2ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2015-04-20 13:20:55 +0200
+Processing by ContactsController#new as HTML
+  Rendered contacts/new.html.erb within layouts/application (4.4ms)
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  [1m[35mPost Load (0.6ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered statics/_news.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 384ms (Views: 383.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2015-04-20 13:21:44 +0200
+Processing by ContactsController#new as HTML
+  Rendered contacts/new.html.erb within layouts/application (2.5ms)
+  Rendered layouts/_navigation.html.erb (0.4ms)
+  [1m[36mPost Load (0.8ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  Rendered statics/_news.html.erb (1.4ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 393ms (Views: 391.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2015-04-20 13:22:11 +0200
+Processing by ContactsController#new as HTML
+  Rendered contacts/new.html.erb within layouts/application (4.9ms)
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  [1m[35mPost Load (0.8ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered statics/_news.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 417ms (Views: 415.6ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/contacts" for 127.0.0.1 at 2015-04-20 13:22:25 +0200
+Processing by ContactsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zyd9JgabBxFmTm0uXPiXRVWpVLkXtQC2JXrDWX8PrD58WBOD+X8PY1L+OK8/vZzsLGr+BAzpGh9AuJJZ8XXHjw==", "contact"=>{"name"=>"dani", "email"=>"daniel.herzogfhnw@gmail.com", "message"=>"test"}, "commit"=>"Send Message"}
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/mail_form-1.5.1/lib/mail_form/views/mail_form/contact.erb (1.9ms)
+
+MailForm::Notifier#contact: processed outbound mail in 450.1ms
+
+Sent mail to daniel.herzog.work@outlook.com (1190.7ms)
+Date: Mon, 20 Apr 2015 13:22:25 +0200
+From: dani <daniel.herzogfhnw@gmail.com>
+To: daniel.herzog.work@outlook.com
+Message-ID: <5534e1718b0dc_1bcd38915543462f@dany-GA-A75-D3H.mail>
+Subject: My Contact Form
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<h4 style="text-decoration:underline">My Contact Form</h4>
+
+
+  <p><b>Name:</b>
+  dani</p>
+
+  <p><b>Email:</b>
+  daniel.herzogfhnw@gmail.com</p>
+
+  <p><b>Message:</b>
+  test</p>
+
+
+Completed 500 Internal Server Error in 1709ms
+
+ActionView::MissingTemplate (Missing template contacts/create, application/create with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :arb, :jbuilder]}. Searched in:
+  * "/home/dany/ruby_workspace/ayako_page/app/views"
+  * "/home/dany/.rvm/gems/ruby-2.2.0/gems/devise-3.4.1/app/views"
+  * "/home/dany/.rvm/gems/ruby-2.2.0/bundler/gems/active_admin-e9eca8f8b9ff/app/views"
+  * "/home/dany/.rvm/gems/ruby-2.2.0/gems/kaminari-0.16.3/app/views"
+):
+  actionview (4.2.0) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.0) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.0) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.0) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.0) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.0) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.0) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.0) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.0) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.0) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.0) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.0) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.0) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.0) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  activesupport (4.2.0) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.0) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  activerecord (4.2.0) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:40:in `render'
+  actionpack (4.2.0) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.0) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.0) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.0) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:234:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:234:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:234:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:169:in `block in halting'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:92:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:734:in `_run_process_action_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.0) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.2.0) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.0) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.0) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.0) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.0) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.0) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.0) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.0) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.0) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.2.0) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.0) lib/action_controller/metal.rb:236:in `block in action'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:42:in `serve'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:802:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.0) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:647:in `call'
+  activerecord (4.2.0) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:734:in `_run_call_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/dany/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.5ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (34.3ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (19.9ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (39.6ms)
+
+
+Started POST "/contacts" for 127.0.0.1 at 2015-04-20 13:23:35 +0200
+Processing by ContactsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zyd9JgabBxFmTm0uXPiXRVWpVLkXtQC2JXrDWX8PrD58WBOD+X8PY1L+OK8/vZzsLGr+BAzpGh9AuJJZ8XXHjw==", "contact"=>{"name"=>"dani", "email"=>"daniel.herzogfhnw@gmail.com", "message"=>"test"}, "commit"=>"Send Message"}
+  Rendered /home/dany/.rvm/gems/ruby-2.2.0/gems/mail_form-1.5.1/lib/mail_form/views/mail_form/contact.erb (0.7ms)
+
+MailForm::Notifier#contact: processed outbound mail in 20.4ms
+
+Sent mail to daniel.herzog.work@outlook.com (741.1ms)
+Date: Mon, 20 Apr 2015 13:23:35 +0200
+From: dani <daniel.herzogfhnw@gmail.com>
+To: daniel.herzog.work@outlook.com
+Message-ID: <5534e1b7d0a6a_1bcd3fa692005c3034714@dany-GA-A75-D3H.mail>
+Subject: My Contact Form
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<h4 style="text-decoration:underline">My Contact Form</h4>
+
+
+  <p><b>Name:</b>
+  dani</p>
+
+  <p><b>Email:</b>
+  daniel.herzogfhnw@gmail.com</p>
+
+  <p><b>Message:</b>
+  test</p>
+
+
+  Rendered contacts/create.html.erb within layouts/application (1.7ms)
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  Rendered statics/_news.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 1152ms (Views: 386.8ms | ActiveRecord: 0.5ms)
