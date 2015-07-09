@@ -36,7 +36,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+ruby '2.2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
