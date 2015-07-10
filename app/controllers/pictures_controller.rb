@@ -14,6 +14,7 @@ class PicturesController < ApplicationController
   # GET /pictures/1.json
   def show
     @picture = @theme.pictures.find(params[:id])
+    @verspictures = Picture.where(name: @picture.name)
   end
 
   # GET /pictures/new

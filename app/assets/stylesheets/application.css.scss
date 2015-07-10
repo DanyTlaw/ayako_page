@@ -306,6 +306,29 @@ GALLERY EFFEKTE
                 -ms-transition: all 300ms ease-out;
                 transition: all 300ms ease-out;
             }
+        .caption{
+            background-color: rgba(0,0,0,0.8);
+            position: absolute;
+            color: #fff;
+            z-index: 100;
+            -webkit-transition: all 300ms ease-out;
+            -moz-transition: all 300ms ease-out;
+            -o-transition: all 300ms ease-out;
+            -ms-transition: all 300ms ease-out;
+            transition: all 300ms ease-out;
+            left: 0;
+        }
+        .fade-caption, .scale-caption {
+            opacity: 0;
+            width: 100px;
+            height: 100px;
+            text-align: left;
+            padding: 5px;
+
+        }
+        p{
+            font-size: 18px;
+        }
         }
 }
 

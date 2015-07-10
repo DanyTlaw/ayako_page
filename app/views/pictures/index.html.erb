@@ -6,6 +6,7 @@
 	<% @pictures.each do |picture| %>
 	<div class="col-md-3">
 		<div class="img-wrapper">
+			<%= link_to theme_picture_path(picture.theme_id, picture.id) do %>
 			<div class="imgbox">
 				<img src="<%= picture.url%>">
 				<span class="caption fade-caption">
@@ -13,6 +14,7 @@
 					<p>Text den du haben möchtest</p>
 				</span>
 			</div>
+			<% end %>
 		</div>
 	</div>
 	<% end %>

@@ -1,28 +1,47 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @picture.name %>
-</p>
+<fieldset>
+  <legend><%= @picture.name %></legend>
+</fieldset>
+<div class="col-md-12">
+  <div class="col-md-6">
+   <%= image_tag @picture.url_url(:big) %> 
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">About Picture</div>    
+        <div class="panel-body">
+          <div class="col-md-6"><strong>Version:</strong></div><div class="col-md-6"><%= @picture.version%></div>
+          <div class="col-md-6"><strong>Price:</strong></div><div class="col-md-6"><%= @picture.price%></div>        
+          <div class="col-md-6"><strong>Size:</strong></div><div class="col-md-6"><%= @picture.size%></div>  
+          <div class="col-md-12"><strong>Description:</strong>
+          <p><%= @picture.description %></p>
+          <% if @picture.for_sale%>       
+            <%= button_to "Add to Cart", line_items_path(picture_id: @picture),  class: "btn btn-primary"%>
+          <% end %>
+          </div>
+        </div>
+    </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">Versionen</div>    
+        <div class="panel-body">
+          <% if @verspictures.size > 1 %>
+            <% @verspictures.each do |pic| %>
+              <div class="col-md-4">
+                <div class="img-wrapper-thumb">
+                <%= link_to theme_picture_path(pic.theme_id, pic.id) do %>
+                  <div class="imgbox">
+                    <%= image_tag pic.url, size: "100x100"%>
+                    <span class="caption fade-caption">
+                      <p>Version: <%= pic.version%></p>
+                    </span>                 
+                  </div>
+                <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @picture.price %>
-</p>
-
-<p>
-  <strong>Count:</strong>
-  <%= @picture.count %>
-</p>
-
-<p>
-  <strong>Url:</strong>
-  <%= image_tag @picture.url %>
-</p>
-
-<p>
-  <strong>Theme:</strong>
-  <%= @picture.theme_id %>
-</p>
-
-<%= link_to 'Back', theme_pictures_path %>
