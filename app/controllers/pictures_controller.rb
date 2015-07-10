@@ -4,7 +4,8 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = @theme.pictures
+    @unfilteredPictures = @theme.pictures
+    @pictures = Picture.getPictures(@unfilteredPictures)
   end
 
   def shop

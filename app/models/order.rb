@@ -11,10 +11,11 @@ class Order < ActiveRecord::Base
 			item.cart_id = nil
 			line_items << item
 			#Das Bild muss nun auf ordered gesetzt werden wenn es sich um genau ein stück handelt
-
+			puts item.picture_id
 				pic = Picture.find(item.picture_id)
 				if pic.count < 2
 					pic.status = "ordered"
+					pic.save
 				end
 		end
 	end

@@ -5,6 +5,20 @@ class Picture < ActiveRecord::Base
 
 	before_destroy :ensure_not_referenced_by_any_line_item
 
+	#Diese Methode wird gebraucht damit nur eine Version eines Bildes geladen werden
+	def self.getPictures(pics)
+		filterPicture = Array.new
+		names = Array.new
+		pics.each do |pic|
+			unless names.include? pic.name
+				filterPicture.push(pic)
+			end
+			names.push(pic.name)
+		end
+		return filterPicture
+	end
+
+
 	private
 
 
