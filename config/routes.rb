@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :news
+
   mount Ckeditor::Engine => '/ckeditor'
   resources :posts do
     resources :post_images  
