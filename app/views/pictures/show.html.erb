@@ -10,14 +10,22 @@
     <div class="panel panel-default">
         <div class="panel-heading">About Picture</div>    
         <div class="panel-body">
-          <div class="col-md-6"><strong>Version:</strong></div><div class="col-md-6"><%= @picture.version%></div>
-          <div class="col-md-6"><strong>Price:</strong></div><div class="col-md-6"><%= @picture.price%></div>        
-          <div class="col-md-6"><strong>Size:</strong></div><div class="col-md-6"><%= @picture.size%></div>  
-          <div class="col-md-12"><strong>Description:</strong>
+          <div class="col-md-6">
+            <p><strong>Version:</strong></p>
+            <p><strong>Price:</strong></p>
+            <p><strong>Size:</strong></p>
+          </div>
+          <div class="col-md-6">
+            <p><%= @picture.version%></p>
+            <p><%= @picture.price%></p>
+            <p><%= @picture.size%></p>
+          </div>
+          <div class="col-md-12"><p><strong>Description:</strong></p>
           <p><%= @picture.description %></p>
           <% if @picture.for_sale%>       
             <%= button_to "Add to Cart", line_items_path(picture_id: @picture),  class: "btn btn-primary"%>
           <% end %>
+  
           </div>
         </div>
     </div>

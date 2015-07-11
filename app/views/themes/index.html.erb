@@ -1,5 +1,5 @@
   <fieldset>
-    <legend>Gallery</legend>
+    <div class="toptitle">Gallery</div>
   </fieldset>
 <div class="col-md-12">
   <% @themes.each do |theme| %>
@@ -9,7 +9,7 @@
       <div class="imgbox">
         <img src="<%= frontpicture(theme.id)%>">
         <span class="caption fade-caption">
-          <h3><%= theme.name%></h3>
+          <h4><%= theme.name%></h4>
           <p>Text den du möchtest</p>
         </span>
       </div>

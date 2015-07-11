@@ -5,6 +5,8 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 </head>
 <body>
 
@@ -14,6 +16,7 @@
 		<div class="col-md-12" style="margin-bottom: 50px;">
 			<div class="col-md-3">
 				<%= render "statics/news" %> 	
+				<%= render "statics/posts" %>
 			</div>
 			<div class="col-md-9">
 				<%= yield %>

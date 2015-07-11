@@ -14,6 +14,13 @@ ActiveAdmin.register Post do
   #   permitted << :other if resource.something?
   #   permitted
   # end
+  form do |f|
+        f.inputs "Post" do
+        f.input :title
+        f.input :content, :as => :ckeditor
+    end
+    f.actions
 
+  end
 
 end

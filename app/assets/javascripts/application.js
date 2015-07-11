@@ -13,5 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.dotdotdot
+//= require bootstrap-sprockets
 //= require turbolinks
+//= require ckeditor/init
 //= require_tree .
+//= require bootstrap-slider

@@ -19,4 +19,25 @@ class Order < ActiveRecord::Base
 				end
 		end
 	end
+
+	def paypal_url(return_path)
+		values = {
+	        business: "seller@tes.com",
+	        cmd: "_cart",
+	        upload: 1,
+	        return: "#{Rails.application.secrets.app_host}#{return_path}",
+	        invoice: id,
+	        
+	    }
+	    line_items.each do |item|
+		    values.merge!({
+				"amount_1" => item.picture.price,
+				"item_name_1" => item.picture.name.to_s + " Version:" + item.picture.version.to_s,
+				"item_number_1" => item.picture.id,
+				"quantity_1" => item.quantity
+			})
+		end
+	    "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
+
+	end
 end

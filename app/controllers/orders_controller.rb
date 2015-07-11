@@ -33,19 +33,22 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
     @order.status = "open"
-
-    respond_to do |format|
+    @order.total = @cart.total_price
+    puts @order.total
       if @order.save
+        if @order.pay_type == "Pay Pal"
+          puts "Leitet auf Paypal"
+          redirect_to @order.paypal_url(order_path(@order))
+        else
+          redirect_to shop_url, notice: 'Thank you for your Order' 
+        end
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         OrderNotifier.received(@order).deliver
-        format.html { redirect_to shop_url, notice: 'Thank you for your Order' }
-        format.json { render :show, status: :created, location: @order }
+
       else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        render :new 
       end
-    end
   end
 
   # PATCH/PUT /orders/1

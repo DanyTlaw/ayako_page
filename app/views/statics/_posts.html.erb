@@ -1,0 +1,19 @@
+<fieldset>
+	<div class="toptitle">Posts</div>
+</fieldset>
+<% post = Post.last(2) %>
+<% post.each do |post| %>
+ <div class="panel panel-default" >
+ 	<div class="panel-body">
+ 	 	<h3><%= post.title %></h3>
+	 	<div class="post_text">
+	 		<%= (post.content).html_safe%>
+	 	</div>
+
+ 		<div class="post-button">
+ 			<%= button_to "Show more", post_path(post.id),method: :get,class: "btn btn-primary" %>
+ 		</div>
+ 	</div>
+ </div>
+<% end %>
+ <%= button_to "Show all", posts_path, method: :get,class: "btn btn-primary" %>

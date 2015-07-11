@@ -1,24 +1,54 @@
-<p id="notice"><%= notice %></p>
+<fieldset>
+  <div class="toptitle">Your Order</div>
+</fieldset>
+<div class="col-md-12">
+	<div class="col-md-6">
+		<div class="panel panel-default">
+		<div class="panel-heading">Order Details</div>
+		<div class="panel-body">
+			<% @order.line_items.each do |item| %>
+			<div class="col-md-4" style="clear: both;">
+				<div class="img-wrapper-thumb">
+					<div class="imgbox">
+						<%= image_tag item.picture.url %>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<table class="cart">
+					<tr>
+						<td><%= item.quantity %> &times; <%= item.picture.name %></td>
+						<td class="price"><%= number_to_currency(item.total_price)%></td>
+					</tr>
 
-<p>
-  <strong>Name:</strong>
-  <%= @order.name %>
-</p>
 
-<p>
-  <strong>Adress:</strong>
-  <%= @order.adress %>
-</p>
+				</table>
+					<div class="panel panel-default" style="margin-top: 10px;">
 
-<p>
-  <strong>Email:</strong>
-  <%= @order.email %>
-</p>
+						<div class="panel-body">
+							<div class="col-md-6">Version:</div><div class="col-md-6"><%= item.picture.version %></div>
+							<div class="col-md-6">Size:</div><div class="col-md-6"><%= item.picture.size %></div>
+						</div>
+					</div>
 
-<p>
-  <strong>Pay type:</strong>
-  <%= @order.pay_type %>
-</p>
+			</div>
+			<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="col-md-6"><strong>Name:</strong></div><div class="col-md-6"><%= @order.name %></div>
+				<div class="col-md-6"><strong>Adress:</strong></div><div class="col-md-6"><%= @order.adress%></div>
+				<div class="col-md-6"><strong>Email:</strong></div><div class="col-md-6"><%= @order.email %></div>
+				<div class="col-md-6"><strong>Pay type:</strong></div><div class="col-md-6"><%= @order.pay_type %></div>
+				<div class="col-md-6"><strong>Total Price:</strong></div><div class="col-md-6"><%= @order.total %></div>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<p>Thank you for your purchase with Paypal. I will write you an email as soon as i shipped your purchases.</p>
+	</div>
+</div>

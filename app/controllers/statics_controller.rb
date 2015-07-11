@@ -5,6 +5,10 @@ class StaticsController < ApplicationController
 	def news
 	end
 
+	def post
+
+	end
+
 	def about
 	end
 end
