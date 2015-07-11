@@ -1,11 +1,12 @@
 <fieldset>
 	<div class="toptitle">Posts</div>
 </fieldset>
-<% post = Post.all.order("created_at DESC").last(1)  %>
+<% post = Post.all.order("created_at DESC").last(2) %>
 <% post.each do |post| %>
  <div class="panel panel-default" >
  	<div class="panel-body">
  	 	<h3><%= post.title %></h3>
+ 		<p style="color:#838282"> Ayako Kyodo | <%= post.created_at.strftime("%d %b %y") %></p>
 	 	<div class="post_text">
 	 		<%= (post.content).html_safe%>
 	 	</div>

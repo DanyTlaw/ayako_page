@@ -12,6 +12,9 @@ gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootstrap-slider-rails'
 
+# gem für socialmedia sharing
+gem 'social-share-button'
+
 gem 'ckeditor', github: 'galetahub/ckeditor'
 # gem für pagination der posts
 gem 'will_paginate'

@@ -1,15 +1,21 @@
 
 <fieldset>
-  <legend><%= @picture.name %></legend>
+  <div class="toptitle"><%= @picture.name %></div>
 </fieldset>
 <div class="col-md-12">
   <div class="col-md-6">
-   <%= image_tag @picture.url_url(:big) %> 
+   <%= image_tag @picture.url_url(:big) %>
+   <div class="col-md-12">
+    <h5>Like this picture? Share it!</h5> 
+    <%= social_share_button_tag(@picture.name , :popup => "true") %>
+   </div>
   </div>
   <div class="col-md-6">
-    <div class="panel panel-default">
-        <div class="panel-heading">About Picture</div>    
+    <div class="panel panel-default">  
         <div class="panel-body">
+          <div class="col-md-12">
+            <h3>About</h3>
+          </div>
           <div class="col-md-6">
             <p><strong>Version:</strong></p>
             <p><strong>Price:</strong></p>
@@ -29,9 +35,11 @@
           </div>
         </div>
     </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">Versionen</div>    
+      <div class="panel panel-default">   
         <div class="panel-body">
+          <div class="col-md-12">
+            <h3>Versions</h3>
+          </div>
           <% if @verspictures.size > 1 %>
             <% @verspictures.each do |pic| %>
               <div class="col-md-4">
