@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require bootstrap-slider
+ *= require social-share-button
  *= require_tree .
  *= require_self
  */
@@ -65,6 +66,7 @@ p{
     float:left;
     font-size: 48px;
     padding-left: 20px;
+    margin-left:25px;
     font-family: bookman;
 }
 

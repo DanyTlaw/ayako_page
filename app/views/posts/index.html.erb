@@ -5,11 +5,15 @@
 
     <% @posts.each do |post| %>
       <div class="panel panel-default" style="height: 300px;">
-      <div class="panel-heading"><%= (post.title).html_safe %></div>
         <div class ="panel-body">
+            <h3><%= (post.title).html_safe %></h3>
+            <p style="color:#838282"> Ayako Kyodo | <%= post.created_at.strftime("%d %b %y") %></p>
             <div class="post_text">
               <%= (post.content).html_safe %>
             </div>
+                <div class="post-button">
+                  <%= button_to "Show more", post_path(post.id),method: :get,class: "btn btn-primary" %>
+                </div>
         </div>
 
       </div>
