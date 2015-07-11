@@ -1,3 +1,15 @@
 <fieldset>
 	<div class="toptitle">News</div>
 </fieldset>
+<% news = News.all.order("created_at DESC").last(1) %>
+<% news.each do |news| %>
+ <div class="panel panel-default" >
+ 	<div class="panel-body">
+ 		<p><%= news.created_at.strftime("%d %b %y") %></p>
+ 	 	<h3><%= news.title %></h3>
+	 	<div class="post_text">
+	 		<%= (news.content).html_safe%>
+	 	</div>
+ 	</div>
+ </div>
+<% end %>
