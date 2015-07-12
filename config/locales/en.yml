@@ -1,23 +1,63 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  themes:
+    index:
+      title: "Gallery"
+  layouts:
+    navigation:
+      home: "Home"
+      blog: "Blog"
+      about: "About"
+      gallery: "Gallery"
+      shop: "Shop"
+      contact: "Contact"
+  statics:
+    news:
+      title: "News"
+    posts:
+      title: "Blog"
+      buttons: "Show more"
+      buttona: "Show all"
+    about:
+      title: "About me"
+  posts:
+    index:
+      title: "Blog overview"
+      previous_label: "previous"
+      next_label: "next"
+  pictures:
+    index:
+      title: "Gallery"
+    show:
+      about_picture: "About the picture"
+      version: "Version"
+      price: "Price"
+      size: "Size"
+      desc: "Description"
+      difversions: "Versions"
+    shop:
+      title: "Shop"
+      add: "Add to cart"
+  orders:
+    show:
+      title: "Your order"
+      details: "Order details"
+      version: "Version"
+      size: "Size"
+      name: "Name"
+      adress: "Adress"
+      email: "Email"
+      pay_type: "Pay type"
+      total_price: "Total price"
+      paypalorder: "Thanks for your order with Paypal. You will reveive an email as soon as your order is shipped."
+  contacts:
+    new:
+      title: "Contact form"
+      name: "Name"
+      email: "Email"
+      message: "Message"
+      button: "Send message"
+  carts:
+    show:
+      title: "Cart"
+      empty_button: "Empty cart"
+      checkout_button: "Checkout"

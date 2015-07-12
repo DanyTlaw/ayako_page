@@ -1,5 +1,5 @@
 <fieldset>
-	<div class="toptitle">Posts</div>
+	<div class="toptitle"><%= t('.title')%></div>
 </fieldset>
 <% post = Post.all.order("created_at DESC").last(1)  %>
 <% post.each do |post| %>
@@ -11,9 +11,9 @@
 	 	</div>
 
  		<div class="post-button">
- 			<%= button_to "Show more", post_path(post.id),method: :get,class: "btn btn-primary" %>
+ 			<%= button_to t('.buttons'), post_path(post.id),method: :get,class: "btn btn-primary" %>
  		</div>
  	</div>
  </div>
 <% end %>
- <%= button_to "Show all", posts_path, method: :get,class: "btn btn-primary" %>
+ <%= button_to t('.buttona'), posts_path, method: :get,class: "btn btn-primary" %>

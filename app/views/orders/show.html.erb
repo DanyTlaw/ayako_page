@@ -1,10 +1,10 @@
 <fieldset>
-  <div class="toptitle">Your Order</div>
+  <div class="toptitle"><%= t('.title')%></div>
 </fieldset>
 <div class="col-md-12">
 	<div class="col-md-6">
 		<div class="panel panel-default">
-		<div class="panel-heading">Order Details</div>
+		<div class="panel-heading"><%= t('.details')%></div>
 		<div class="panel-body">
 			<% @order.line_items.each do |item| %>
 			<div class="col-md-4" style="clear: both;">
@@ -26,8 +26,8 @@
 					<div class="panel panel-default" style="margin-top: 10px;">
 
 						<div class="panel-body">
-							<div class="col-md-6">Version:</div><div class="col-md-6"><%= item.picture.version %></div>
-							<div class="col-md-6">Size:</div><div class="col-md-6"><%= item.picture.size %></div>
+							<div class="col-md-6"><%= t('.version')%>:</div><div class="col-md-6"><%= item.picture.version %></div>
+							<div class="col-md-6"><%= t('.size')%>:</div><div class="col-md-6"><%= item.picture.size %></div>
 						</div>
 					</div>
 
@@ -39,16 +39,16 @@
 	<div class="col-md-6">
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<div class="col-md-6"><strong>Name:</strong></div><div class="col-md-6"><%= @order.name %></div>
-				<div class="col-md-6"><strong>Adress:</strong></div><div class="col-md-6"><%= @order.adress%></div>
-				<div class="col-md-6"><strong>Email:</strong></div><div class="col-md-6"><%= @order.email %></div>
-				<div class="col-md-6"><strong>Pay type:</strong></div><div class="col-md-6"><%= @order.pay_type %></div>
-				<div class="col-md-6"><strong>Total Price:</strong></div><div class="col-md-6"><%= @order.total %></div>
+				<div class="col-md-6"><strong><%= t('.name')%>:</strong></div><div class="col-md-6"><%= @order.name %></div>
+				<div class="col-md-6"><strong><%= t('.adress')%>:</strong></div><div class="col-md-6"><%= @order.adress%></div>
+				<div class="col-md-6"><strong><%= t('.email')%>:</strong></div><div class="col-md-6"><%= @order.email %></div>
+				<div class="col-md-6"><strong><%= t('.pay_type')%>:</strong></div><div class="col-md-6"><%= @order.pay_type %></div>
+				<div class="col-md-6"><strong><%= t('.total_price')%>:</strong></div><div class="col-md-6"><%= @order.total %></div>
 
 			</div>
 		</div>
 	</div>
 	<div class="col-md-12">
-		<p>Thank you for your purchase with Paypal. I will write you an email as soon as i shipped your purchases.</p>
+		<p><%= t('.paypalorder')%></p>
 	</div>
 </div>

@@ -1,10 +1,9 @@
 
 
   <fieldset>
-    <div class="toptitle">Contact</div>
+    <div class="toptitle"><%= t('.title')%></div>
   </fieldset>
 <div class="col-md-8">
-  <h3>Send a message</h3>
 <%= form_for(@contact) do |f| %>
   <% if @contact.errors.any? %>
     <div id="error_explanation">
@@ -19,19 +18,19 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :name %><br>
+    <%= f.label t('.name') %><br>
     <%= f.text_field :name, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :email %><br>
+    <%= f.label t('.email') %><br>
     <%= f.text_field :email,class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :message %><br>
+    <%= f.label t('.message') %><br>
     <%= f.text_area :message, rows: 3,class: "form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit "Send Message", class: "btn btn-success"%>
+    <%= f.submit t('.button'), class: "btn btn-success"%>
   </div>
 <% end %>
 </div>
