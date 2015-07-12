@@ -11,6 +11,8 @@ gem 'sass-rails', '~> 5.0'
 # Use bootstrap for basic styling
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootstrap-slider-rails'
+# gems für i18n
+gem 'rails-i18n'
 
 # gem für socialmedia sharing
 gem 'social-share-button'

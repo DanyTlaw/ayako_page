@@ -1,9 +1,6 @@
-<% if notice %>
-	<p id="notice"><%= notice %></p>
-<% end %>
-  <fieldset>
-    <div class="toptitle">Shop</div>
-  </fieldset>
+<fieldset>
+  <div class="toptitle"><%= t('.title')%></div>
+</fieldset>
 <div class="col-md-12">
 	<% @pictures.each do |picture| %>
 		<% unless picture.count == 1 && picture.status == "ordered"%>
@@ -18,7 +15,7 @@
 			    </div>
 		    </div>
 		    <div class="addbutton">
-		    <%= button_to "Add to Cart", line_items_path(picture_id: picture),  class: "btn btn-primary"%>
+		    <%= button_to t('.add'), line_items_path(picture_id: picture),  class: "btn btn-primary"%>
 		    </div>
 	  	</div>
 	  	<% end %>

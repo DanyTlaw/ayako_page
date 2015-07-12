@@ -1,10 +1,11 @@
 <fieldset>
-	<div class="toptitle">News</div>
+	<div class="toptitle"><%=t(".title")%></div>
 </fieldset>
 <% news = News.all.order("created_at DESC").last(1) %>
 <% news.each do |news| %>
  <div class="panel panel-default" >
  	<div class="panel-body">
+ 		<p><%= l(news.created_at, format: "%D %B %Y" ) %></p>
  	 	<h3><%= news.title %></h3>
  		<p style="color:#838282">Ayako Kyodo | <%= news.created_at.strftime("%d %b %y") %></p>
 	 	<div class="post_text">

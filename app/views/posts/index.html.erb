@@ -1,6 +1,6 @@
 
   <fieldset>
-    <div class="toptitle">Post overview</div>
+    <div class="toptitle"><%= t('.title')%></div>
   </fieldset>
 
     <% @posts.each do |post| %>
@@ -20,4 +20,6 @@
     <% end %>
 <br>
 
-<%= will_paginate @posts, renderer: BootstrapPagination::Rails%>
+<%= will_paginate @posts,
+  :previous_label => t(".previous_label"),
+  :next_label     => t(".next_label")%>

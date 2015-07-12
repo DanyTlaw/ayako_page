@@ -1,0 +1,63 @@
+de:
+  themes:
+    index:
+      title: "Gallerie"
+  layouts:
+    navigation:
+      home: "Home"
+      blog: "Blog"
+      about: "Über mich"
+      gallery: "Gallerie"
+      shop: "Shop"
+      contact: "Kontakt"
+  statics:
+    news:
+      title: "Neuigkeit"
+    posts:
+      title: "Blog"
+      buttons: "Mehr anzeigen"
+      buttona: "Alle anzeigen"
+    about:
+      title: "Über mich"
+  posts:
+    index:
+      title: "Blog Übersicht"
+      previous_label: "vorher"
+      next_label: "nächste"
+  pictures:
+    index:
+      title: "Gallerie"
+    show:
+      about_picture: "Über das Bild"
+      version: "Version"
+      price: "Preis"
+      size: "Masse"
+      desc: "Beschreibung"
+      difversions: "Versionen"
+    shop:
+      title: "Shop"
+      add: "Zum Warenkorb hinzufügen"
+  orders:
+    show:
+      title: "Ihre Bestellung"
+      details: "Bestellung Details"
+      version: "Version"
+      size: "Masse"
+      name: "Name"
+      adress: "Adresse"
+      email: "Email"
+      pay_type: "Zahlungsart"
+      total_price: "Gesamtpreis"
+      paypalorder: "Danke für ihre Bestellung mit Paypal. Sie erhalten eine Email, sobald ihre Bestellung verschickt wurde."
+  contacts:
+    new:
+      title: "Kontaktformular"
+      name: "Name"
+      email: "Email"
+      message: "Nachricht"
+      button: "Sende Nachricht"
+  carts:
+    show:
+      title: "Warenkorb"
+      empty_button: "Warenkorb leeren"
+      checkout_button: "Bezahlen"

@@ -1,4 +1,3 @@
-
 <fieldset>
   <div class="toptitle"><%= @picture.name %></div>
 </fieldset>
@@ -11,22 +10,20 @@
    </div>
   </div>
   <div class="col-md-6">
-    <div class="panel panel-default">  
+    <div class="panel panel-default">
+        <div class="panel-heading"><%= t('.about_picture')%></div>    
         <div class="panel-body">
-          <div class="col-md-12">
-            <h3>About</h3>
-          </div>
           <div class="col-md-6">
-            <p><strong>Version:</strong></p>
-            <p><strong>Price:</strong></p>
-            <p><strong>Size:</strong></p>
+            <p><strong><%= t('.version')%>:</strong></p>
+            <p><strong><%= t('.price')%>:</strong></p>
+            <p><strong><%= t('.size')%>:</strong></p>
           </div>
           <div class="col-md-6">
             <p><%= @picture.version%></p>
             <p><%= @picture.price%></p>
             <p><%= @picture.size%></p>
           </div>
-          <div class="col-md-12"><p><strong>Description:</strong></p>
+          <div class="col-md-12"><p><strong><%= t('.desc')%>:</strong></p>
           <p><%= @picture.description %></p>
           <% if @picture.for_sale%>       
             <%= button_to "Add to Cart", line_items_path(picture_id: @picture),  class: "btn btn-primary"%>
@@ -35,11 +32,9 @@
           </div>
         </div>
     </div>
-      <div class="panel panel-default">   
+      <div class="panel panel-default">
+        <div class="panel-heading"><%= t('.defversions')%></div>    
         <div class="panel-body">
-          <div class="col-md-12">
-            <h3>Versions</h3>
-          </div>
           <% if @verspictures.size > 1 %>
             <% @verspictures.each do |pic| %>
               <div class="col-md-4">
