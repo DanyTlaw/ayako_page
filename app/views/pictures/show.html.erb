@@ -6,13 +6,13 @@
    <%= image_tag @picture.url_url(:big) %>
    <div class="col-md-12">
     <h5>Like this picture? Share it!</h5> 
-    <%= social_share_button_tag(@picture.name , :popup => "true") %>
+    <%= social_share_button_tag(@picture.name) %>
    </div>
   </div>
   <div class="col-md-6">
-    <div class="panel panel-default">
-        <div class="panel-heading"><%= t('.about_picture')%></div>    
+    <div class="panel panel-default">    
         <div class="panel-body">
+        <h3><%= t('.about_picture')%></h3>
           <div class="col-md-6">
             <p><strong><%= t('.version')%>:</strong></p>
             <p><strong><%= t('.price')%>:</strong></p>
@@ -32,9 +32,9 @@
           </div>
         </div>
     </div>
-      <div class="panel panel-default">
-        <div class="panel-heading"><%= t('.defversions')%></div>    
+      <div class="panel panel-default">  
         <div class="panel-body">
+        <h3><%= t('.difversions')%></h3>
           <% if @verspictures.size > 1 %>
             <% @verspictures.each do |pic| %>
               <div class="col-md-4">

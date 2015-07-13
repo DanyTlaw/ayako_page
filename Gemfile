@@ -13,6 +13,8 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootstrap-slider-rails'
 # gems für i18n
 gem 'rails-i18n'
+# gem für mehrsprachige model
+gem 'globalize', '~> 5.0.0'
 
 # gem für socialmedia sharing
 gem 'social-share-button'

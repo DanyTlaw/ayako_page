@@ -1,14 +1,13 @@
-
-  <fieldset>
-    <legend><%= t('.title')%></legend>
-  </fieldset>
+<fieldset>
+    <div class="toptitle"><%= t('.title')%></div>
+ </fieldset>
 <div class="col-md-12">
 	<% @pictures.each do |picture| %>
 	<div class="col-md-3">
 		<div class="img-wrapper">
 			<%= link_to theme_picture_path(picture.theme_id, picture.id) do %>
 			<div class="imgbox">
-				<img src="<%= picture.url%>">
+				<img src="<%= picture.url%>"></img>
 				<span class="caption fade-caption">
 					<h3><%= picture.name%></h3>
 					<p>Text den du haben möchtest</p>

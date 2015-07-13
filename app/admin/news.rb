@@ -1,7 +1,6 @@
 ActiveAdmin.register News do
 
   permit_params :title, :content
-  
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -14,6 +13,14 @@ ActiveAdmin.register News do
   #   permitted << :other if resource.something?
   #   permitted
   # end
+  action_item only: :index do
+    link_to 'Change Deutsch', change_locale_path(:de)
+  end
+
+  action_item only: :index do
+    link_to 'Change Englisch', change_locale_path(:en)
+  end
+
   form do |f|
         f.inputs "News" do
         f.input :title

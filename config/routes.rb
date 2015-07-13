@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   	  resources :pictures
   end
 
+
+
 get '/change_locale/:locale', to: 'settings#change_locale', as: :change_locale
 
   match '/contacts',     to: 'contacts#new',             via: 'get'

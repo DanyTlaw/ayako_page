@@ -5,9 +5,8 @@
 <% news.each do |news| %>
  <div class="panel panel-default" >
  	<div class="panel-body">
- 		<p><%= l(news.created_at, format: "%D %B %Y" ) %></p>
  	 	<h3><%= news.title %></h3>
- 		<p style="color:#838282">Ayako Kyodo | <%= news.created_at.strftime("%d %b %y") %></p>
+ 		<p style="color:#838282">Ayako Kyodo | <%= l(news.created_at, format: "%d %b %y" ) %></p>
 	 	<div class="post_text">
 	 		<%= (news.content).html_safe%>
 	 	</div>

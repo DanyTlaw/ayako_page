@@ -14,6 +14,13 @@ ActiveAdmin.register Picture do
   #   permitted << :other if resource.something?
   #   permitted
   # end
+  action_item only: :index do
+    link_to 'Change Deutsch', change_locale_path(:de)
+  end
+
+  action_item only: :index do
+    link_to 'Change Englisch', change_locale_path(:en)
+  end
   form do |f|
     panel "Wichtig bei der Erfassung eines Bildes" do
         ul do

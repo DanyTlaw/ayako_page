@@ -14,6 +14,13 @@ ActiveAdmin.register Post do
   #   permitted << :other if resource.something?
   #   permitted
   # end
+  action_item only: :index do
+    link_to 'Change Deutsch', change_locale_path(:de)
+  end
+
+  action_item only: :index do
+    link_to 'Change Englisch', change_locale_path(:en)
+  end
   form do |f|
         f.inputs "Post" do
         f.input :title

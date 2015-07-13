@@ -1,13 +1,17 @@
-<header>
-    <div class="col-md-12">
+<header class="navbar navbar-default">
+    <div class="col-md-3.5">
+        <div class="logo">Ayako Kyodo</div>
+    </div>
+    <div class="col-md-8"></div>
+    <div class="col-md-1">
         <div class="languages">
-                    <a href="<%=change_locale_path(:en)%>"><img src="images/flagge_grossbritannien.gif" width="30px" height="20px" style="margin-right: 5px"></a>
-                    <a href="<%=change_locale_path(:de)%>"><img src="images/flagge_deutschland.png" width="30px" height="20px" style="margin-right: 5px"></a>
-                    <img src="images/flagge_japan.jpg" width="30px" height="20px" style="margin-right: 5px">
+                    <%= link_to image_tag('flagge_grossbritannien.gif', size: "30x20"), change_locale_path(:en)%>
+                    <%= link_to image_tag('flagge_deutschland.png', size: "30x20"), change_locale_path(:de)%>
+                    <%= link_to image_tag('flagge_japan.jpg', size: "30x20")%>
+
         </div>
     </div>
-    <div class="col-md-12" style="margin-bottom: 30px;">
-        <div class="logo">Ayako Kyodo</div>
+    <div class="col-md-8.5" style="margin-bottom: 30px;">
         <div class="nav-wrapper">
             <nav>
                 <ul>
