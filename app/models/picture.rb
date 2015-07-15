@@ -1,7 +1,7 @@
 class Picture < ActiveRecord::Base
 	belongs_to :theme
 	mount_uploader :url, PictureUploader
-	translates :name, :price, :description
+	translates :name, :description
 	has_many :line_items
 
 	before_destroy :ensure_not_referenced_by_any_line_item

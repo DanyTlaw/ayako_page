@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713162126) do
+ActiveRecord::Schema.define(version: 20150713190802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,18 @@ ActiveRecord::Schema.define(version: 20150713162126) do
     t.integer  "total"
   end
 
+  create_table "picture_translations", force: :cascade do |t|
+    t.integer  "picture_id",  null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "name"
+    t.text     "description"
+  end
+
+  add_index "picture_translations", ["locale"], name: "index_picture_translations_on_locale", using: :btree
+  add_index "picture_translations", ["picture_id"], name: "index_picture_translations_on_picture_id", using: :btree
+
   create_table "pictures", force: :cascade do |t|
     t.string   "name"
     t.integer  "price"
@@ -132,6 +144,17 @@ ActiveRecord::Schema.define(version: 20150713162126) do
     t.string   "status"
   end
 
+  create_table "post_image_translations", force: :cascade do |t|
+    t.integer  "post_image_id", null: false
+    t.string   "locale",        null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "name"
+  end
+
+  add_index "post_image_translations", ["locale"], name: "index_post_image_translations_on_locale", using: :btree
+  add_index "post_image_translations", ["post_image_id"], name: "index_post_image_translations_on_post_image_id", using: :btree
+
   create_table "post_images", force: :cascade do |t|
     t.string   "name"
     t.string   "image"
@@ -140,6 +163,18 @@ ActiveRecord::Schema.define(version: 20150713162126) do
     t.integer  "post_id"
   end
 
+  create_table "post_translations", force: :cascade do |t|
+    t.integer  "post_id",    null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "title"
+    t.text     "content"
+  end
+
+  add_index "post_translations", ["locale"], name: "index_post_translations_on_locale", using: :btree
+  add_index "post_translations", ["post_id"], name: "index_post_translations_on_post_id", using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
@@ -147,23 +182,23 @@ ActiveRecord::Schema.define(version: 20150713162126) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "rich_rich_images", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.string   "owner_type"
-    t.integer  "owner_id"
-    t.text     "uri_cache"
+  create_table "theme_translations", force: :cascade do |t|
+    t.integer  "theme_id",   null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
   end
+
+  add_index "theme_translations", ["locale"], name: "index_theme_translations_on_locale", using: :btree
+  add_index "theme_translations", ["theme_id"], name: "index_theme_translations_on_theme_id", using: :btree
 
   create_table "themes", force: :cascade do |t|
     t.string   "name"
     t.integer  "size"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
   end
 
   add_foreign_key "line_items", "carts"
